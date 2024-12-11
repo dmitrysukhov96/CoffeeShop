@@ -1,5 +1,8 @@
 package com.dmitrysukhov.coffeeshop
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,17 +20,28 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun DetailsScreen(onClick: () -> Unit) {
-    Button(
-        onClick = onClick, modifier = Modifier
-            .width(240.dp)
-            .height(60.dp), colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFFD17842), contentColor = Color.White
-        ), shape = RoundedCornerShape(16.dp)
-    ) {
-        Text(
-            text = "Add to Cart", fontSize = 16.sp, fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            style = TextStyle(fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold)
-        )
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(Color(0xFF0C0F14)))
+    {
+        Button(
+            onClick = onClick, modifier = Modifier
+                .width(240.dp)
+                .height(60.dp), colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFD17842), contentColor = Color.White
+            ), shape = RoundedCornerShape(16.dp)
+        ) {
+            Text(
+                text = "Add to Cart", fontSize = 16.sp, fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                style = TextStyle(fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold)
+            )
+        }
     }
 }
+
+
+
+
+
