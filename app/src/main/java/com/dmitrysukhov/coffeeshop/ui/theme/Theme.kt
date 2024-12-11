@@ -1,4 +1,4 @@
- package com.dmitrysukhov.coffeeshop.ui.theme
+  package com.dmitrysukhov.coffeeshop.ui.theme
 
 import android.app.Activity
 import android.os.Build
