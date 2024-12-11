@@ -1,4 +1,4 @@
-package com.dmitrysukhov.coffeeshop.ui.theme
+ package com.dmitrysukhov.coffeeshop.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
