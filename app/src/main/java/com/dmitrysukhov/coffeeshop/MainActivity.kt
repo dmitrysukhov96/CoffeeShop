@@ -1,4 +1,4 @@
-package com.dmitrysukhov.coffeeshop
+ package com.dmitrysukhov.coffeeshop
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
