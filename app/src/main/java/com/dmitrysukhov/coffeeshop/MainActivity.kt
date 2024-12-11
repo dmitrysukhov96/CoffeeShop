@@ -25,7 +25,6 @@ import com.dmitrysukhov.coffeeshop.ui.theme.CoffeeShopTheme
     }
 }
 
-
 //Timofey
 
 //Sava/
