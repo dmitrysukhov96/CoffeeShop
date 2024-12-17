@@ -18,6 +18,5 @@ fun HomeScreen() {
     )
     {
         Text(text = "HomeScreen")
-
     }
 }
