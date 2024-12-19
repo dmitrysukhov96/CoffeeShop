@@ -9,7 +9,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.dmitrysukhov.coffeeshop.ui.theme.CoffeeShopTheme
 
- class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

@@ -105,3 +105,38 @@ val beansList = listOf(
         grade = 4.7f
     )
 )
+
+
+
+
+
+
+
+
+data class Drink(
+    val name: String,
+    val description: String,
+    val price: Double,
+    val size: String,
+    val caffeineContent: Int, // in mg
+    val isHot: Boolean
+)
+
+val drinks = listOf(
+    Drink(name = "Cappuccino", description = "Espresso with steamed milk and foam", price = 3.50, size = "Medium", caffeineContent = 150, isHot = true),
+    Drink(name = "Latte", description = "Espresso with a lot of steamed milk and a little foam", price = 4.00, size = "Large", caffeineContent = 120, isHot = true),
+    Drink(name = "Doppio", description = "A double shot of espresso", price = 2.75, size = "Small", caffeineContent = 150, isHot = true),
+    Drink(name = "Mocha", description = "Espresso mixed with chocolate and steamed milk", price = 4.50, size = "Large", caffeineContent = 140, isHot = true),
+    Drink(name = "Americano", description = "Espresso with hot water", price = 2.50, size = "Medium", caffeineContent = 100, isHot = true),
+    Drink(name = "Espresso", description = "Strong black coffee", price = 2.00, size = "Small", caffeineContent = 80, isHot = true),
+    Drink(name = "Macchiato", description = "Espresso topped with a small amount of foam", price = 3.00, size = "Small", caffeineContent = 120, isHot = true),
+    Drink(name = "Flat White", description = "Steamed milk poured over a shot of espresso", price = 3.75, size = "Medium", caffeineContent = 130, isHot = true),
+    Drink(name = "Iced Coffee", description = "Chilled brewed coffee served over ice", price = 3.00, size = "Large", caffeineContent = 90, isHot = false),
+    Drink(name = "Cold Brew", description = "Coffee brewed slowly with cold water", price = 3.50, size = "Large", caffeineContent = 120, isHot = false),
+    Drink(name = "Frappuccino", description = "Blended iced coffee drink with whipped cream", price = 4.75, size = "Large", caffeineContent = 110, isHot = false),
+    Drink(name = "Chai Latte", description = "Spiced tea mixed with steamed milk", price = 3.50, size = "Medium", caffeineContent = 50, isHot = true),
+    Drink(name = "Matcha Latte", description = "Green tea powder mixed with steamed milk", price = 4.00, size = "Large", caffeineContent = 30, isHot = true),
+    Drink(name = "Hot Chocolate", description = "Steamed milk mixed with chocolate syrup", price = 3.25, size = "Medium", caffeineContent = 10, isHot = true),
+    Drink(name = "Nitro Cold Brew", description = "Cold brew infused with nitrogen for a creamy texture", price = 4.25, size = "Large", caffeineContent = 125, isHot = false)
+)
+

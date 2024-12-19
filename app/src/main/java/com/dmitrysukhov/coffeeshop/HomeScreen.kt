@@ -1,4 +1,4 @@
- package com.dmitrysukhov.coffeeshop
+package com.dmitrysukhov.coffeeshop
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
- @Composable
+@Composable
 
 fun HomeScreen() {
     Column(
