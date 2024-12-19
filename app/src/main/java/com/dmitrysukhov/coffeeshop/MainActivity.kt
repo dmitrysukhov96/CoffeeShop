@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoffeeShopTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
+                    HomeScreen()
                 }
             }
         }
