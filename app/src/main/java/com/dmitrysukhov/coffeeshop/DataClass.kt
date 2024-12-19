@@ -27,7 +27,7 @@ val beansList = listOf(
     Beans(
         name = "Arabica",
         roastLevel = "Medium",
-        company = "Coffee Roasters Co.",
+        company = "Nescafe",
         price = 8.99f,
         description = "Fruity and sweet coffee with a smooth finish.",
         size = 250L,
@@ -37,7 +37,7 @@ val beansList = listOf(
     Beans(
         name = "Robusta",
         roastLevel = "Dark",
-        company = "Bold Beans Ltd.",
+        company = "Starbucks",
         price = 7.49f,
         description = "Strong and earthy coffee with high caffeine content.",
         size = 500L,
@@ -47,7 +47,7 @@ val beansList = listOf(
     Beans(
         name = "Colombian Supremo",
         roastLevel = "Medium-Dark",
-        company = "Supreme Coffee Co.",
+        company = "Lavazza",
         price = 9.99f,
         description = "Rich and balanced with notes of chocolate and nuts.",
         size = 300L,
@@ -57,7 +57,7 @@ val beansList = listOf(
     Beans(
         name = "Brazilian Santos",
         roastLevel = "Light",
-        company = "Santos Blends",
+        company = "Jacobs",
         price = 8.49f,
         description = "Mild and nutty flavor with low acidity.",
         size = 250L,
@@ -67,7 +67,7 @@ val beansList = listOf(
     Beans(
         name = "Sumatra Mandheling",
         roastLevel = "Dark",
-        company = "Mandheling Masters",
+        company = "Tchibo",
         price = 10.99f,
         description = "Earthy and herbal coffee with a full body.",
         size = 400L,
@@ -77,7 +77,7 @@ val beansList = listOf(
     Beans(
         name = "Ethiopian Yirgacheffe",
         roastLevel = "Light",
-        company = "Yirga Coffee",
+        company = "Carte Noire",
         price = 12.99f,
         description = "Delicate and floral coffee with citrus notes.",
         size = 250L,
@@ -87,7 +87,7 @@ val beansList = listOf(
     Beans(
         name = "Kenyan AA",
         roastLevel = "Medium",
-        company = "Kenya Gold Coffee",
+        company = "Illy",
         price = 11.49f,
         description = "Bold and winey coffee with berry-like acidity.",
         size = 300L,
@@ -97,7 +97,7 @@ val beansList = listOf(
     Beans(
         name = "Guatemalan Antigua",
         roastLevel = "Medium-Dark",
-        company = "Antigua Coffee House",
+        company = "Dolce Gusto",
         price = 9.99f,
         description = "Spicy and smoky coffee with a chocolatey finish.",
         size = 350L,
