@@ -5,7 +5,7 @@ data class Coffee(
     var price: Float,
     var milk: Boolean,
     var milkType: String,
-    var description:String,
+    var description: String,
     var size: String,
     var grade: Float,
     var roastLevel: String,
@@ -20,7 +20,8 @@ data class Beans(
     var description: String,
     var size: Long,
     var country: String,
-    var grade: Float
+    var grade: Float,
+    var imageRes: Int
 )
 
 val beansList = listOf(
@@ -32,7 +33,8 @@ val beansList = listOf(
         description = "Fruity and sweet coffee with a smooth finish.",
         size = 250L,
         country = "Ethiopia",
-        grade = 4.7f
+        grade = 4.7f,
+        imageRes = R.drawable.beans_2
     ),
     Beans(
         name = "Robusta",
@@ -42,7 +44,8 @@ val beansList = listOf(
         description = "Strong and earthy coffee with high caffeine content.",
         size = 500L,
         country = "Vietnam",
-        grade = 4.3f
+        grade = 4.3f,
+        imageRes = R.drawable.beans_3
     ),
     Beans(
         name = "Colombian Supremo",
@@ -52,7 +55,8 @@ val beansList = listOf(
         description = "Rich and balanced with notes of chocolate and nuts.",
         size = 300L,
         country = "Colombia",
-        grade = 4.8f
+        grade = 4.8f,
+        imageRes = R.drawable.beans_1
     ),
     Beans(
         name = "Brazilian Santos",
@@ -62,7 +66,8 @@ val beansList = listOf(
         description = "Mild and nutty flavor with low acidity.",
         size = 250L,
         country = "Brazil",
-        grade = 4.5f
+        grade = 4.5f,
+        imageRes = R.drawable.beans_4
     ),
     Beans(
         name = "Sumatra Mandheling",
@@ -72,7 +77,8 @@ val beansList = listOf(
         description = "Earthy and herbal coffee with a full body.",
         size = 400L,
         country = "Indonesia",
-        grade = 4.6f
+        grade = 4.6f,
+        imageRes = R.drawable.beans_5
     ),
     Beans(
         name = "Ethiopian Yirgacheffe",
@@ -82,7 +88,7 @@ val beansList = listOf(
         description = "Delicate and floral coffee with citrus notes.",
         size = 250L,
         country = "Ethiopia",
-        grade = 4.9f
+        grade = 4.9f, imageRes = R.drawable.beans_6
     ),
     Beans(
         name = "Kenyan AA",
@@ -92,7 +98,7 @@ val beansList = listOf(
         description = "Bold and winey coffee with berry-like acidity.",
         size = 300L,
         country = "Kenya",
-        grade = 4.8f
+        grade = 4.8f, imageRes = R.drawable.beans_7
     ),
     Beans(
         name = "Guatemalan Antigua",
@@ -102,6 +108,6 @@ val beansList = listOf(
         description = "Spicy and smoky coffee with a chocolatey finish.",
         size = 350L,
         country = "Guatemala",
-        grade = 4.7f
+        grade = 4.7f, imageRes = R.drawable.beans_8
     )
 )

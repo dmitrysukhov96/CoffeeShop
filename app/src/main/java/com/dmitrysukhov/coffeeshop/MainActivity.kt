@@ -16,7 +16,7 @@ import com.dmitrysukhov.coffeeshop.ui.theme.CoffeeShopTheme
         setContent {
             CoffeeShopTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
+                    HomeScreen()
                 }
             }
         }
