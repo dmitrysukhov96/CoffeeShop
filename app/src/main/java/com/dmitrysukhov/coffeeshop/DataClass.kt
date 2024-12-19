@@ -119,30 +119,170 @@ val beansList = listOf(
 
 
 
-data class Drink(
-    val name: String,
-    val description: String,
-    val price: Double,
-    val size: String,
-    val caffeineContent: Int, // in mg
-    val isHot: Boolean
+val coffeeList = listOf(
+    Coffee(
+        name = "Cappuccino",
+        price = 4.50f,
+        milk = true,
+        milkType = "Whole",
+        description = "A classic Italian coffee made with a shot of espresso, steamed milk, and a rich foam topping.",
+        size = "Medium",
+        grade = 4.7f,
+        roastLevel = "Medium",
+        ratingsCount = 1200
+    ),
+    Coffee(
+        name = "Latte",
+        price = 5.00f,
+        milk = true,
+        milkType = "Skim",
+        description = "A creamy coffee beverage with a shot of espresso and steamed milk, topped with light foam.",
+        size = "Large",
+        grade = 4.5f,
+        roastLevel = "Light",
+        ratingsCount = 980
+    ),
+    Coffee(
+        name = "Doppio",
+        price = 3.20f,
+        milk = false,
+        milkType = "None",
+        description = "A double shot of espresso for those who enjoy pure, strong coffee.",
+        size = "Small",
+        grade = 4.8f,
+        roastLevel = "Dark",
+        ratingsCount = 540
+    ),
+    Coffee(
+        name = "Mocha",
+        price = 5.30f,
+        milk = true,
+        milkType = "Almond",
+        description = "A delightful blend of espresso, steamed milk, and chocolate syrup, topped with whipped cream.",
+        size = "Large",
+        grade = 4.6f,
+        roastLevel = "Medium",
+        ratingsCount = 700
+    ),
+    Coffee(
+        name = "Americano",
+        price = 2.90f,
+        milk = false,
+        milkType = "None",
+        description = "A simple yet bold drink, made by diluting a shot of espresso with hot water.",
+        size = "Medium",
+        grade = 4.2f,
+        roastLevel = "Medium",
+        ratingsCount = 800
+    ),
+    Coffee(
+        name = "Flat White",
+        price = 4.80f,
+        milk = true,
+        milkType = "Oat",
+        description = "A rich and creamy coffee with a perfect balance of espresso and micro-foamed milk.",
+        size = "Medium",
+        grade = 4.7f,
+        roastLevel = "Light",
+        ratingsCount = 650
+    ),
+    Coffee(
+        name = "Espresso",
+        price = 2.50f,
+        milk = false,
+        milkType = "None",
+        description = "A single shot of intense and flavorful coffee, perfect for a quick pick-me-up.",
+        size = "Small",
+        grade = 4.9f,
+        roastLevel = "Dark",
+        ratingsCount = 1000
+    ),
+    Coffee(
+        name = "Macchiato",
+        price = 3.80f,
+        milk = true,
+        milkType = "Whole",
+        description = "An espresso marked with a dollop of steamed milk for a balanced flavor.",
+        size = "Small",
+        grade = 4.3f,
+        roastLevel = "Medium",
+        ratingsCount = 520
+    ),
+    Coffee(
+        name = "Ristretto",
+        price = 2.80f,
+        milk = false,
+        milkType = "None",
+        description = "A short shot of espresso with a more intense flavor profile.",
+        size = "Small",
+        grade = 4.8f,
+        roastLevel = "Dark",
+        ratingsCount = 600
+    ),
+    Coffee(
+        name = "Cortado",
+        price = 3.50f,
+        milk = true,
+        milkType = "Whole",
+        description = "An espresso cut with a small amount of steamed milk, creating a smooth and balanced taste.",
+        size = "Small",
+        grade = 4.6f,
+        roastLevel = "Medium",
+        ratingsCount = 450
+    ),
+    Coffee(
+        name = "Affogato",
+        price = 5.00f,
+        milk = true,
+        milkType = "None",
+        description = "A luxurious dessert coffee with a shot of espresso poured over vanilla ice cream.",
+        size = "Small",
+        grade = 4.9f,
+        roastLevel = "Dark",
+        ratingsCount = 550
+    ),
+    Coffee(
+        name = "Irish Coffee",
+        price = 6.50f,
+        milk = true,
+        milkType = "Cream",
+        description = "A warming coffee drink with whiskey, sugar, and cream, perfect for cold days.",
+        size = "Medium",
+        grade = 4.5f,
+        roastLevel = "Medium",
+        ratingsCount = 320
+    ),
+    Coffee(
+        name = "Turkish Coffee",
+        price = 3.00f,
+        milk = false,
+        milkType = "None",
+        description = "A traditional coffee prepared with finely ground beans, water, and sugar, boiled to perfection.",
+        size = "Small",
+        grade = 4.7f,
+        roastLevel = "Dark",
+        ratingsCount = 410
+    ),
+    Coffee(
+        name = "Cold Brew",
+        price = 4.00f,
+        milk = false,
+        milkType = "None",
+        description = "A refreshing iced coffee made by steeping coarsely ground beans in cold water for hours.",
+        size = "Large",
+        grade = 4.6f,
+        roastLevel = "Medium",
+        ratingsCount = 780
+    ),
+    Coffee(
+        name = "Frappe",
+        price = 5.20f,
+        milk = true,
+        milkType = "Skim",
+        description = "A chilled and frothy coffee beverage, blended with milk, ice, and flavorings.",
+        size = "Large",
+        grade = 4.4f,
+        roastLevel = "Light",
+        ratingsCount = 490
+    )
 )
-
-val drinks = listOf(
-    Drink(name = "Cappuccino", description = "Espresso with steamed milk and foam", price = 3.50, size = "Medium", caffeineContent = 150, isHot = true),
-    Drink(name = "Latte", description = "Espresso with a lot of steamed milk and a little foam", price = 4.00, size = "Large", caffeineContent = 120, isHot = true),
-    Drink(name = "Doppio", description = "A double shot of espresso", price = 2.75, size = "Small", caffeineContent = 150, isHot = true),
-    Drink(name = "Mocha", description = "Espresso mixed with chocolate and steamed milk", price = 4.50, size = "Large", caffeineContent = 140, isHot = true),
-    Drink(name = "Americano", description = "Espresso with hot water", price = 2.50, size = "Medium", caffeineContent = 100, isHot = true),
-    Drink(name = "Espresso", description = "Strong black coffee", price = 2.00, size = "Small", caffeineContent = 80, isHot = true),
-    Drink(name = "Macchiato", description = "Espresso topped with a small amount of foam", price = 3.00, size = "Small", caffeineContent = 120, isHot = true),
-    Drink(name = "Flat White", description = "Steamed milk poured over a shot of espresso", price = 3.75, size = "Medium", caffeineContent = 130, isHot = true),
-    Drink(name = "Iced Coffee", description = "Chilled brewed coffee served over ice", price = 3.00, size = "Large", caffeineContent = 90, isHot = false),
-    Drink(name = "Cold Brew", description = "Coffee brewed slowly with cold water", price = 3.50, size = "Large", caffeineContent = 120, isHot = false),
-    Drink(name = "Frappuccino", description = "Blended iced coffee drink with whipped cream", price = 4.75, size = "Large", caffeineContent = 110, isHot = false),
-    Drink(name = "Chai Latte", description = "Spiced tea mixed with steamed milk", price = 3.50, size = "Medium", caffeineContent = 50, isHot = true),
-    Drink(name = "Matcha Latte", description = "Green tea powder mixed with steamed milk", price = 4.00, size = "Large", caffeineContent = 30, isHot = true),
-    Drink(name = "Hot Chocolate", description = "Steamed milk mixed with chocolate syrup", price = 3.25, size = "Medium", caffeineContent = 10, isHot = true),
-    Drink(name = "Nitro Cold Brew", description = "Cold brew infused with nitrogen for a creamy texture", price = 4.25, size = "Large", caffeineContent = 125, isHot = false)
-)
-
