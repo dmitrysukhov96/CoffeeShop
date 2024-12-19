@@ -41,6 +41,8 @@ fun DetailsScreen(onClick: () -> Unit) {
     }
 }
 
+const val DETAILS_SCREEN = "DetailsScreen"
+
 
 
 

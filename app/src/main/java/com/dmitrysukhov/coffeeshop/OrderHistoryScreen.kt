@@ -21,3 +21,5 @@ fun OrderHistoryScreen() {
 
     }
 }
+
+  const val ORDER_HISTORY_SCREEN = "OrderHistoryScreen"

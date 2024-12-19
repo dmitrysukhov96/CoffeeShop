@@ -115,3 +115,5 @@ fun Previewshka() {
 }
 
 val Orange = Color(0xFFD17842)
+
+const val HOME_SCREEN = "HomeScreen"
