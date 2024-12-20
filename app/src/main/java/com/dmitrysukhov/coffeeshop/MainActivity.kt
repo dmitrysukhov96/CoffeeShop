@@ -25,8 +25,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dmitrysukhov.coffeeshop.ui.theme.CoffeeShopTheme
 
-
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +66,8 @@ class MainActivity : ComponentActivity() {
                                 .padding(
                                     top = WindowInsets.systemBars
                                         .asPaddingValues()
-                                        .calculateTopPadding())
+                                        .calculateTopPadding()
+                                )
                                 .height(56.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.Center
@@ -116,7 +115,7 @@ class MainActivity : ComponentActivity() {
                         composable(CART_SCREEN) { CartScreen() }
                         composable(FAVORITES_SCREEN) { FavoritesScreen() }
                         composable(NOTIFICATIONS_SCREEN) { NotificationsScreen() }
-                        composable(DETAILS_SCREEN) { DetailsScreen(onClick = { Unit }) }
+                        composable(DETAILS_SCREEN) { DetailsScreen(onClick = { }) }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
                     }
                 }
@@ -125,20 +124,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun FavoritesScreen() {
+}
 
 @Composable
-fun FavoritesScreen(){}
-
-@Composable
-fun NotificationsScreen(){}
-
-
-
+fun NotificationsScreen() {
+}
 
 const val FAVORITES_SCREEN = "FavoritesScreen"
 const val NOTIFICATIONS_SCREEN = "NotificationsScreen"
-
-
-
-
-

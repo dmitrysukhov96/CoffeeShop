@@ -123,13 +123,6 @@ val beansList = listOf(
     )
 )
 
-
-
-
-
-
-
-
 val coffeeList = listOf(
     Coffee(
         name = "Cappuccino",
