@@ -7,19 +7,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -51,7 +54,7 @@ class MainActivity : ComponentActivity() {
                         unselectedIcon = Icons.Default.FavoriteBorder
                     ),
                     BottomNavItem(
-                        title = NOTIFICATIONS_SCREEN,
+                        title = ORDER_HISTORY_SCREEN,
                         selectedIcon = Icons.Filled.Notifications,
                         unselectedIcon = Icons.Default.Notifications
                     )
@@ -59,23 +62,9 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     topBar = {
-                        Row(
-                            Modifier
-                                .background(Color.DarkGray)
-                                .fillMaxWidth()
-                                .padding(
-                                    top = WindowInsets.systemBars
-                                        .asPaddingValues()
-                                        .calculateTopPadding()
-                                )
-                                .height(56.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                        }
+                        //todo сделать такой топБар как в дизайне
                     },
                     bottomBar = {
-
                         NavigationBar(containerColor = Color.Black, contentColor = Color.Gray) {
                             items.forEachIndexed { index, item ->
                                 NavigationBarItem(
@@ -109,12 +98,11 @@ class MainActivity : ComponentActivity() {
                     NavHost(
                         navController = navController,
                         startDestination = HOME_SCREEN,
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.background(Color(0xFF0C0F14))
                     ) {
                         composable(HOME_SCREEN) { HomeScreen() }
                         composable(CART_SCREEN) { CartScreen() }
-                        composable(FAVORITES_SCREEN) { FavoritesScreen() }
-                        composable(NOTIFICATIONS_SCREEN) { NotificationsScreen() }
+                        composable(FAVORITES_SCREEN) { FavouritesScreen() }
                         composable(DETAILS_SCREEN) { DetailsScreen(onClick = { }) }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
                     }
@@ -124,13 +112,4 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun FavoritesScreen() {
-}
 
-@Composable
-fun NotificationsScreen() {
-}
-
-const val FAVORITES_SCREEN = "FavoritesScreen"
-const val NOTIFICATIONS_SCREEN = "NotificationsScreen"
