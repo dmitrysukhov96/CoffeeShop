@@ -1,5 +1,13 @@
 package com.dmitrysukhov.coffeeshop
 
+import androidx.compose.ui.graphics.vector.ImageVector
+
+
+data class BottomNavItem(
+    val title: String,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector)
+
 data class Coffee(
     var name: String,
     var price: Float,
@@ -23,6 +31,9 @@ data class Beans(
     var grade: Float,
     var imageRes: Int
 )
+
+
+
 
 val beansList = listOf(
     Beans(
