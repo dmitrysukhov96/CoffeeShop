@@ -1,5 +1,7 @@
 package com.dmitrysukhov.coffeeshop
 
+import androidx.compose.ui.text.font.FontWeight
+
 data class Coffee(
     var name: String,
     var price: Float,
@@ -9,7 +11,9 @@ data class Coffee(
     var size: String,
     var grade: Float,
     var roastLevel: String,
-    var ratingsCount: Int
+    var ratingsCount: Int,
+    val imageRes: Int,
+    val fontWeight: FontWeight
 )
 
 data class Beans(
@@ -21,7 +25,8 @@ data class Beans(
     var size: Long,
     var country: String,
     var grade: Float,
-    var imageRes: Int
+    var imageRes: Int,
+    val fontWeight: FontWeight
 )
 
 
@@ -35,7 +40,9 @@ val beansList = listOf(
         size = 250L,
         country = "Ethiopia",
         grade = 4.7f,
+        fontWeight = FontWeight.W400,
         imageRes = R.drawable.beans_2
+
     ),
     Beans(
         name = "Robusta",
@@ -46,7 +53,8 @@ val beansList = listOf(
         size = 500L,
         country = "Vietnam",
         grade = 4.3f,
-        imageRes = R.drawable.beans_3
+        imageRes = R.drawable.beans_3,
+        fontWeight = FontWeight.W400
     ),
     Beans(
         name = "Colombian Supremo",
@@ -57,7 +65,8 @@ val beansList = listOf(
         size = 300L,
         country = "Colombia",
         grade = 4.8f,
-        imageRes = R.drawable.beans_1
+        imageRes = R.drawable.beans_1,
+        fontWeight = FontWeight.W400
     ),
     Beans(
         name = "Brazilian Santos",
@@ -68,7 +77,8 @@ val beansList = listOf(
         size = 250L,
         country = "Brazil",
         grade = 4.5f,
-        imageRes = R.drawable.beans_4
+        imageRes = R.drawable.beans_4,
+        fontWeight = FontWeight.W400
     ),
     Beans(
         name = "Sumatra Mandheling",
@@ -79,7 +89,8 @@ val beansList = listOf(
         size = 400L,
         country = "Indonesia",
         grade = 4.6f,
-        imageRes = R.drawable.beans_5
+        imageRes = R.drawable.beans_5,
+        fontWeight = FontWeight.W400
     ),
     Beans(
         name = "Ethiopian Yirgacheffe",
@@ -89,7 +100,7 @@ val beansList = listOf(
         description = "Delicate and floral coffee with citrus notes.",
         size = 250L,
         country = "Ethiopia",
-        grade = 4.9f, imageRes = R.drawable.beans_6
+        grade = 4.9f, imageRes = R.drawable.beans_6, fontWeight = FontWeight.W400
     ),
     Beans(
         name = "Kenyan AA",
@@ -99,7 +110,7 @@ val beansList = listOf(
         description = "Bold and winey coffee with berry-like acidity.",
         size = 300L,
         country = "Kenya",
-        grade = 4.8f, imageRes = R.drawable.beans_7
+        grade = 4.8f, imageRes = R.drawable.beans_7, fontWeight = FontWeight.W400
     ),
     Beans(
         name = "Guatemalan Antigua",
@@ -109,7 +120,7 @@ val beansList = listOf(
         description = "Spicy and smoky coffee with a chocolatey finish.",
         size = 350L,
         country = "Guatemala",
-        grade = 4.7f, imageRes = R.drawable.beans_8
+        grade = 4.7f, imageRes = R.drawable.beans_8, fontWeight = FontWeight.W400
     )
 )
 
@@ -123,7 +134,9 @@ val coffeeList = listOf(
         size = "Medium",
         grade = 4.7f,
         roastLevel = "Medium",
-        ratingsCount = 1200
+        ratingsCount = 1200,
+        fontWeight = FontWeight.W400,
+        imageRes = R.drawable.coffee_1
     ),
     Coffee(
         name = "Latte",
@@ -134,7 +147,9 @@ val coffeeList = listOf(
         size = "Large",
         grade = 4.5f,
         roastLevel = "Light",
-        ratingsCount = 980
+        ratingsCount = 980,
+        imageRes = R.drawable.coffee_2,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Doppio",
@@ -145,7 +160,9 @@ val coffeeList = listOf(
         size = "Small",
         grade = 4.8f,
         roastLevel = "Dark",
-        ratingsCount = 540
+        ratingsCount = 540,
+        imageRes = R.drawable.coffee_3,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Mocha",
@@ -156,7 +173,9 @@ val coffeeList = listOf(
         size = "Large",
         grade = 4.6f,
         roastLevel = "Medium",
-        ratingsCount = 700
+        ratingsCount = 700,
+        imageRes = R.drawable.coffee_4,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Americano",
@@ -167,7 +186,9 @@ val coffeeList = listOf(
         size = "Medium",
         grade = 4.2f,
         roastLevel = "Medium",
-        ratingsCount = 800
+        ratingsCount = 800,
+        imageRes = R.drawable.coffee_5,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Flat White",
@@ -178,7 +199,9 @@ val coffeeList = listOf(
         size = "Medium",
         grade = 4.7f,
         roastLevel = "Light",
-        ratingsCount = 650
+        ratingsCount = 650,
+        imageRes = R.drawable.coffee_6,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Espresso",
@@ -189,7 +212,9 @@ val coffeeList = listOf(
         size = "Small",
         grade = 4.9f,
         roastLevel = "Dark",
-        ratingsCount = 1000
+        ratingsCount = 1000,
+        imageRes = R.drawable.coffee_7,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Macchiato",
@@ -200,7 +225,9 @@ val coffeeList = listOf(
         size = "Small",
         grade = 4.3f,
         roastLevel = "Medium",
-        ratingsCount = 520
+        ratingsCount = 520,
+        imageRes = R.drawable.coffee_8,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Ristretto",
@@ -211,7 +238,10 @@ val coffeeList = listOf(
         size = "Small",
         grade = 4.8f,
         roastLevel = "Dark",
-        ratingsCount = 600
+        ratingsCount = 600,
+        imageRes = R.drawable.coffee_9,
+        fontWeight = FontWeight.W400
+
     ),
     Coffee(
         name = "Cortado",
@@ -222,7 +252,9 @@ val coffeeList = listOf(
         size = "Small",
         grade = 4.6f,
         roastLevel = "Medium",
-        ratingsCount = 450
+        ratingsCount = 450,
+        imageRes = R.drawable.coffee_10,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Affogato",
@@ -233,7 +265,9 @@ val coffeeList = listOf(
         size = "Small",
         grade = 4.9f,
         roastLevel = "Dark",
-        ratingsCount = 550
+        ratingsCount = 550,
+        imageRes = R.drawable.coffee_11,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Irish Coffee",
@@ -244,7 +278,9 @@ val coffeeList = listOf(
         size = "Medium",
         grade = 4.5f,
         roastLevel = "Medium",
-        ratingsCount = 320
+        ratingsCount = 320,
+        imageRes = R.drawable.coffee_12,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Turkish Coffee",
@@ -255,7 +291,9 @@ val coffeeList = listOf(
         size = "Small",
         grade = 4.7f,
         roastLevel = "Dark",
-        ratingsCount = 410
+        ratingsCount = 410,
+        imageRes = R.drawable.coffee_13,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Cold Brew",
@@ -266,7 +304,9 @@ val coffeeList = listOf(
         size = "Large",
         grade = 4.6f,
         roastLevel = "Medium",
-        ratingsCount = 780
+        ratingsCount = 780,
+        imageRes = R.drawable.coffee_14,
+        fontWeight = FontWeight.W400
     ),
     Coffee(
         name = "Frappe",
@@ -277,6 +317,8 @@ val coffeeList = listOf(
         size = "Large",
         grade = 4.4f,
         roastLevel = "Light",
-        ratingsCount = 490
+        ratingsCount = 490,
+        imageRes = R.drawable.coffee_15,
+        fontWeight = FontWeight.W400
     )
 )
