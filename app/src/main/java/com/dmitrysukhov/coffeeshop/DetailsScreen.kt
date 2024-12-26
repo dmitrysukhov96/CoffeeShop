@@ -23,13 +23,13 @@ fun DetailsScreen(onClick: () -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
-            .background(Color(0xFF0C0F14)))
+            .background(Black))
     {
         Button(
             onClick = onClick, modifier = Modifier
                 .width(240.dp)
                 .height(60.dp), colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFD17842), contentColor = Color.White
+                containerColor = Orange, contentColor = Color.White
             ), shape = RoundedCornerShape(16.dp)
         ) {
             Text(

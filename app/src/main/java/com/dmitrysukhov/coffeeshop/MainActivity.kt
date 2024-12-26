@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clip(RoundedCornerShape(23.dp))
-                                .background(Color(0xFF0C0F14))
+                                .background(Black)
                                 .height(89.dp)
                                 .padding(horizontal = 41.dp),
                             verticalAlignment = Alignment.CenterVertically,
@@ -99,7 +99,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(
                         navController = navController,
                         startDestination = HOME_SCREEN,
-                        modifier = Modifier.background(Color(0xFF0C0F14))
+                        modifier = Modifier.background(Black)
                     ) {
                         composable(HOME_SCREEN) { HomeScreen() }
                         composable(CART_SCREEN) { CartScreen() }

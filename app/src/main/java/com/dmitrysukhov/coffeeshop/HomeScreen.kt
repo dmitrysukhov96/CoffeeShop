@@ -39,7 +39,7 @@ fun HomeScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF0C0F14))
+            .background(Black)
             .padding(top = 120.dp, start = 30.dp)
     )
     {
