@@ -23,13 +23,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dmitrysukhov.coffeeshop.ui.theme.CoffeeShopTheme
+import com.dmitrysukhov.coffeeshop.ui.theme.SPLASH_SCREEN
+import com.dmitrysukhov.coffeeshop.ui.theme.SplashScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +41,9 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 Scaffold(
                     topBar = {
-                        //todo сделать такой топБар как в дизайне
+                        // TODO: Сделать такой топБар как в дизайне
                     },
-                    bottomBar =
-                    {  //пока что сделаем черным а потом уже блюр добавим
+                    bottomBar = {
                         var selectedItem by rememberSaveable { mutableStateOf(HOME_SCREEN) }
                         Row(
                             modifier = Modifier
@@ -54,8 +54,6 @@ class MainActivity : ComponentActivity() {
                                 .padding(horizontal = 41.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween
-
-
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.home),
@@ -98,9 +96,16 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     NavHost(
                         navController = navController,
-                        startDestination = HOME_SCREEN,
+                        startDestination = SPLASH_SCREEN,
                         modifier = Modifier.background(Black)
                     ) {
+                        composable(SPLASH_SCREEN) {
+                            SplashScreen(onTimeout = {
+                                navController.navigate(HOME_SCREEN) {
+                                    popUpTo(SPLASH_SCREEN) { inclusive = true }
+                                }
+                            })
+                        }
                         composable(HOME_SCREEN) { HomeScreen() }
                         composable(CART_SCREEN) { CartScreen() }
                         composable(FAVORITES_SCREEN) { FavouritesScreen() }
@@ -112,6 +117,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 
 
 
