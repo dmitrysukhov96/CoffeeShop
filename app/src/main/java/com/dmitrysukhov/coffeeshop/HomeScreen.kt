@@ -3,6 +3,7 @@ package com.dmitrysukhov.coffeeshop
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,22 +53,21 @@ fun HomeScreen() {
         Spacer(Modifier.height(60.dp))
         LazyRow {
             items(coffeeList) { coffee ->
-                ListItem(coffee)
+                ListItem(coffee, {
+                    //todo тут надо добавить навигацию
+                })
                 Spacer(Modifier.width(22.dp))
             }
         }
         Text(
-            text = "Coffee beans",
-            color = Color.White,
-            modifier = Modifier.padding(20.dp),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.W500,
-            fontFamily = poppinsFontFamily,
+            text = "Coffee beans", color = Color.White, modifier = Modifier.padding(20.dp),
+            fontSize = 16.sp, fontWeight = FontWeight.W500, fontFamily = poppinsFontFamily,
         )
-
         LazyRow {
             items(beansList) { bean ->
-                ListItem(bean)
+                ListItem(bean, {
+                    //todo тут надо добавить навигацию
+                })
                 Spacer(Modifier.width(22.dp))
             }
         }
@@ -77,7 +77,7 @@ fun HomeScreen() {
 }
 
 @Composable
-fun ListItem(coffee: Any) {
+fun ListItem(coffee: Any, onClick: () -> Unit) {
     val type = if (coffee is Coffee) "Drink" else "Beans"
     val drink = coffee as? Coffee
     val beans = coffee as? Beans
@@ -93,6 +93,7 @@ fun ListItem(coffee: Any) {
                     end = Offset(1000f, 1000f)
                 )
             )
+            .clickable { onClick() }
             .padding(12.dp)
     ) {
 
