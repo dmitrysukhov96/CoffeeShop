@@ -15,15 +15,12 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
 
-
 @Composable
 fun SplashScreen(onTimeout: () -> Unit) {
-
     LaunchedEffect(Unit) {
         delay(1000)
         onTimeout()
     }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -33,13 +30,10 @@ fun SplashScreen(onTimeout: () -> Unit) {
         Image(
             painter = painterResource(R.drawable.logo),
             contentDescription = "Logo",
-            modifier = Modifier
-                .size(120.dp)
+            modifier = Modifier.size(120.dp)
         )
     }
 }
-
-
 
 
 const val SPLASH_SCREEN = "SplashScreen"
