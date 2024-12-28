@@ -161,7 +161,7 @@ val coffeeList = listOf(
         grade = 4.8f,
         roastLevel = "Dark",
         ratingsCount = 540,
-        imageRes = R.drawable.coffee_3,
+        imageRes = R.drawable.coffee_16,
         fontWeight = FontWeight.W400
     ),
     Coffee(
@@ -200,7 +200,7 @@ val coffeeList = listOf(
         grade = 4.7f,
         roastLevel = "Light",
         ratingsCount = 650,
-        imageRes = R.drawable.coffee_6,
+        imageRes = R.drawable.coffee_20,
         fontWeight = FontWeight.W400
     ),
     Coffee(
@@ -253,7 +253,7 @@ val coffeeList = listOf(
         grade = 4.6f,
         roastLevel = "Medium",
         ratingsCount = 450,
-        imageRes = R.drawable.coffee_10,
+        imageRes = R.drawable.coffee_22,
         fontWeight = FontWeight.W400
     ),
     Coffee(
@@ -279,7 +279,7 @@ val coffeeList = listOf(
         grade = 4.5f,
         roastLevel = "Medium",
         ratingsCount = 320,
-        imageRes = R.drawable.coffee_12,
+        imageRes = R.drawable.coffee_21,
         fontWeight = FontWeight.W400
     ),
     Coffee(
@@ -292,7 +292,7 @@ val coffeeList = listOf(
         grade = 4.7f,
         roastLevel = "Dark",
         ratingsCount = 410,
-        imageRes = R.drawable.coffee_13,
+        imageRes = R.drawable.coffee_23,
         fontWeight = FontWeight.W400
     ),
     Coffee(
@@ -305,7 +305,7 @@ val coffeeList = listOf(
         grade = 4.6f,
         roastLevel = "Medium",
         ratingsCount = 780,
-        imageRes = R.drawable.coffee_14,
+        imageRes = R.drawable.coffee_18,
         fontWeight = FontWeight.W400
     ),
     Coffee(
@@ -318,7 +318,7 @@ val coffeeList = listOf(
         grade = 4.4f,
         roastLevel = "Light",
         ratingsCount = 490,
-        imageRes = R.drawable.coffee_15,
+        imageRes = R.drawable.coffee_19,
         fontWeight = FontWeight.W400
     )
 )

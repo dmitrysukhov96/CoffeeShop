@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -47,17 +45,14 @@ fun HomeScreen() {
             text = "Find the best\n" +
                     "coffee for you",
             color = Color.White,
-            fontSize = 28.sp,
+            fontSize = 28.sp, lineHeight = 36.sp,
             fontWeight = FontWeight.W600,
             fontFamily = poppinsFontFamily
         )
         Spacer(Modifier.height(60.dp))
-//        LazyRow = строка элементов
-//        LazyColumn = колонка элементов (столбик)
-
         LazyRow {
             items(coffeeList) { coffee ->
-                ListItem2(coffee)
+                ListItem(coffee)
                 Spacer(Modifier.width(22.dp))
             }
         }
@@ -81,9 +76,11 @@ fun HomeScreen() {
     }
 }
 
-
 @Composable
-fun ListItem2(coffee: Coffee) {
+fun ListItem(coffee: Any) {
+    val type = if (coffee is Coffee) "Drink" else "Beans"
+    val drink = coffee as? Coffee
+    val beans = coffee as? Beans
     Box(
         modifier = Modifier
             .width(149.dp)
@@ -106,8 +103,9 @@ fun ListItem2(coffee: Coffee) {
                     .size(126.dp)
                     .clip(RoundedCornerShape(16.dp))
             ) {
-                Image(
-                    painter = painterResource(coffee.imageRes),
+                val res = if (type == "Drink") drink?.imageRes else beans?.imageRes
+                if (res != null) Image(
+                    painter = painterResource(res),
                     contentDescription = "Coffee", modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop
                 )
@@ -120,49 +118,44 @@ fun ListItem2(coffee: Coffee) {
                 )
                 Row(
                     Modifier
-                        .align(Alignment.TopEnd).padding(end = 11.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+                        .align(Alignment.TopEnd)
+                        .padding(end = 11.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
                     Icon(
                         painter = painterResource(R.drawable.star),
                         contentDescription = "", tint = Orange,
                         modifier = Modifier.size(10.dp)
                     )
                     Spacer(modifier = Modifier.width(5.dp))
+                    val grade =
+                        (if (type == "Drink") drink?.grade?.toString() else beans?.grade?.toString())
+                            ?: ""
                     Text(
-                        text = coffee.grade.toString(),
-                        color = Color.White,
-                        fontSize = 10.sp,
-                        fontFamily = poppinsFontFamily,
-                        fontWeight = FontWeight.W600,
-                        lineHeight = 20.sp
+                        text = grade, color = Color.White, fontSize = 10.sp, lineHeight = 20.sp,
+                        fontFamily = poppinsFontFamily, fontWeight = FontWeight.W600
 
                     )
                 }
             }
             Spacer(Modifier.height(10.dp))
             Text(
-                coffee.name, color = Color.White, fontSize = 13.sp, fontFamily = poppinsFontFamily,
-                lineHeight = 20.sp, maxLines = 1
+                drink?.name ?: beans?.name ?: "", color = Color.White, fontSize = 13.sp,
+                fontFamily = poppinsFontFamily, lineHeight = 20.sp, maxLines = 1
             )
             Text(
-                coffee.roastLevel,
-                color = Color.White,
-                fontSize = 9.sp,
-                fontFamily = poppinsFontFamily,
-                lineHeight = 20.sp
+                drink?.roastLevel ?: beans?.roastLevel ?: "", color = Color.White,
+                fontSize = 9.sp, fontFamily = poppinsFontFamily, lineHeight = 20.sp
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    "$ ",
-                    color = Orange,
-                    fontFamily = poppinsFontFamily,
-                    fontSize = 15.sp,
+                    "$ ", color = Orange, fontFamily = poppinsFontFamily, fontSize = 15.sp,
                     fontWeight = FontWeight.SemiBold
                 )
                 Text(
-                    coffee.price.toString(),
-                    color = Color.White,
-                    fontFamily = poppinsFontFamily,
-                    fontSize = 15.sp,
+                    drink?.price?.toString() ?: beans?.price?.toString() ?: "",
+                    color = Color.White, fontFamily = poppinsFontFamily, fontSize = 15.sp,
                     fontWeight = FontWeight.SemiBold
                 )
                 Spacer(Modifier.weight(1f))
@@ -180,77 +173,6 @@ fun ListItem2(coffee: Coffee) {
                             .align(Alignment.Center)
                     )
                 }
-            }
-        }
-    }
-}
-
-
-@Composable
-fun ListItem(bean: Beans) {
-    Column(
-        modifier = Modifier
-            .width(149.dp)
-            .height(245.dp)
-            .clip(RoundedCornerShape(23.dp))
-            .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(Color(0xFF262B33), Color(0x00262B33)),
-                    start = Offset(0f, 0f),
-                    end = Offset(1000f, 1000f)
-                )
-            )
-            .padding(12.dp)
-    ) {
-        Spacer(Modifier.height(13.dp))
-        Image(
-            painter = painterResource(bean.imageRes),
-            contentDescription = "Coffee Beans", modifier = Modifier
-                .size(126.dp)
-                .clip(RoundedCornerShape(16.dp)),
-            contentScale = ContentScale.Crop
-        )
-        Spacer(Modifier.height(10.dp))
-        Text(
-            bean.name, color = Color.White, fontSize = 13.sp, fontFamily = poppinsFontFamily,
-            lineHeight = 20.sp, maxLines = 1
-        )
-        Text(
-            bean.roastLevel,
-            color = Color.White,
-            fontSize = 9.sp,
-            fontFamily = poppinsFontFamily,
-            lineHeight = 20.sp
-        )
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                "$ ",
-                color = Orange,
-                fontFamily = poppinsFontFamily,
-                fontSize = 15.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-            Text(
-                bean.price.toString(),
-                color = Color.White,
-                fontFamily = poppinsFontFamily,
-                fontSize = 15.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-            Spacer(Modifier.weight(1f))
-            Box(
-                modifier = Modifier
-                    .size(28.dp)
-                    .clip(RoundedCornerShape(7.dp))
-                    .background(Orange)
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.plus),
-                    contentDescription = "plus",
-                    modifier = Modifier
-                        .size(8.dp)
-                        .align(Alignment.Center)
-                )
             }
         }
     }
