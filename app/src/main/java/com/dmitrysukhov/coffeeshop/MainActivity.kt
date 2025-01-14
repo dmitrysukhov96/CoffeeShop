@@ -117,6 +117,7 @@ class MainActivity : ComponentActivity() {
                         composable(FAVORITES_SCREEN) { FavouritesScreen() }
                         composable(DETAILS_SCREEN) { DetailsScreen(onClick = { }) }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
+                        composable(DETAILS_SCREEN) { DetailsScreen(onClick = {}) }
                     }
                 }
             }
