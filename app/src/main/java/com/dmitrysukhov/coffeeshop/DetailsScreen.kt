@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -83,9 +84,16 @@ fun DetailsScreen(onClick: () -> Unit) {
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
-            Row (modifier = Modifier.fillMaxWidth().height(149.dp)){
-
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(149.dp)
+                    .clip(RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp))
+                    .background(Color.Black.copy(alpha = 0.5f))
+                    .align(Alignment.BottomEnd)
+            ) {
+                Column { Text("Robusta Beans", color = Color.White) }
+                Column {  }
             }
 
         }
