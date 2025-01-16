@@ -4,19 +4,20 @@ package com.dmitrysukhov.coffeeshop
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -41,6 +42,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun HomeScreen() {
+    var selectedFilter by rememberSaveable { mutableStateOf("All") }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -60,6 +62,29 @@ fun HomeScreen() {
         Row(Modifier.padding(horizontal = 30.dp, vertical = 28.dp)) {
             TextField(searchQuery, { searchQuery = it })
         }
+        Row (Modifier.horizontalScroll(rememberScrollState () )){
+            Filter("All", isSelected = selectedFilter == "All",{selectedFilter = it})
+            Spacer(modifier = Modifier.width(19.dp))
+
+            Filter("Cappuccino", isSelected = selectedFilter == "Cappuccino",{selectedFilter = it})
+            Spacer(modifier = Modifier.width(19.dp))
+
+            Filter("Espresso", isSelected = selectedFilter == "Espresso",{selectedFilter = it})
+            Spacer(modifier = Modifier.width(19.dp))
+
+            Filter("Americano", isSelected = selectedFilter == "Americano",{selectedFilter = it})
+            Spacer(modifier = Modifier.width(19.dp))
+
+            Filter("Macchiato", isSelected = selectedFilter == "Macchiato",{selectedFilter = it})
+            Spacer(modifier = Modifier.width(19.dp))
+
+
+        }
+        Spacer(Modifier.height(22.dp))
+
+
+
+
         LazyRow {
             items(coffeeList) { coffee ->
                 ListItem(coffee, {
@@ -187,6 +212,25 @@ fun ListItem(coffee: Any, onClick: () -> Unit) {
         }
     }
 }
+
+@Composable
+fun Filter(text:String, isSelected:Boolean, onSelect:(String)->Unit){
+    Column (modifier = Modifier.clickable { onSelect(text) }, horizontalAlignment = Alignment.CenterHorizontally){
+        Text(text, color = if (isSelected) Orange else Grey, fontWeight = FontWeight.SemiBold, fontFamily = poppinsFontFamily, fontSize = 14.sp)
+        if (isSelected)
+        Image(painter = painterResource(R.drawable.circle), contentDescription = null)
+
+
+    }
+
+
+
+}
+
+
+
+
+
 
 @Preview(showSystemUi = true)
 @Composable
