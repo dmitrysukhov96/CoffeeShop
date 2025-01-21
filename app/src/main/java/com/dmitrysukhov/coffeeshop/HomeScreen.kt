@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,6 +24,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +38,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -57,12 +60,36 @@ fun HomeScreen() {
             fontSize = 28.sp, lineHeight = 36.sp, fontWeight = FontWeight.W600,
             fontFamily = poppinsFontFamily
         )
-        Row(Modifier.padding(horizontal = 30.dp, vertical = 28.dp)) {
-            TextField(searchQuery, {
-                searchQuery = it
-                selectedFilter = "All"
-            })
+        Row(
+            Modifier.padding(end = 30.dp, top = 28.dp, bottom = 28.dp)
+        ) {
+            TextField(
+                value = searchQuery, textStyle = TextStyle(fontFamily = poppinsFontFamily),
+                onValueChange = {
+                    searchQuery = it
+                    selectedFilter = "All"
+                },
+                placeholder = {
+                    Text(
+                        text = "Find Your Coffee...", color = Grey, fontFamily = poppinsFontFamily,
+                        fontSize = 10.sp, fontWeight = FontWeight.Medium
+                    )
+                },
+                colors = TextFieldDefaults.colors(
+                    unfocusedContainerColor = VeryDarkGrey, focusedContainerColor = VeryDarkGrey,
+                    focusedTextColor = Color.White, focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
+                ), leadingIcon = {
+                    Icon(painterResource(R.drawable.search), contentDescription = "Search",
+                        tint = Grey)
+                },
+                shape = RoundedCornerShape(15.dp), // Скругленные углы
+                modifier = Modifier
+                    .fillMaxWidth() // Заполняет весь доступный горизонтальный размер
+//                    .height(45.dp) // Высота строки поиска
+            )
         }
+
         Row(Modifier.horizontalScroll(rememberScrollState())) {
             Filter("All", isSelected = selectedFilter == "All", { selectedFilter = it })
             Spacer(modifier = Modifier.width(19.dp))

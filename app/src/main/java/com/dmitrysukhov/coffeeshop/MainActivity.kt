@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
                                 Icon(
                                     painter = painterResource(R.drawable.home),
                                     contentDescription = null,
-                                    tint = if (selectedItem == HOME_SCREEN) Orange else Gray,
+                                    tint = if (selectedItem == HOME_SCREEN) Orange else Grey2,
                                     modifier = Modifier.clickable {
                                         selectedItem = HOME_SCREEN
                                         navController.navigate(HOME_SCREEN)
@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
                                 Icon(
                                     painter = painterResource(R.drawable.shop),
                                     contentDescription = null,
-                                    tint = if (selectedItem == CART_SCREEN) Orange else Gray,
+                                    tint = if (selectedItem == CART_SCREEN) Orange else Grey2,
                                     modifier = Modifier.clickable {
                                         selectedItem = CART_SCREEN
                                         navController.navigate(CART_SCREEN)
@@ -80,7 +80,7 @@ class MainActivity : ComponentActivity() {
                                 Icon(
                                     painter = painterResource(R.drawable.fav),
                                     contentDescription = null,
-                                    tint = if (selectedItem == FAVORITES_SCREEN) Orange else Gray,
+                                    tint = if (selectedItem == FAVORITES_SCREEN) Orange else Grey2,
                                     modifier = Modifier.clickable {
                                         selectedItem = FAVORITES_SCREEN
                                         navController.navigate(FAVORITES_SCREEN)
@@ -89,7 +89,7 @@ class MainActivity : ComponentActivity() {
                                 Icon(
                                     painter = painterResource(R.drawable.col),
                                     contentDescription = null,
-                                    tint = if (selectedItem == ORDER_HISTORY_SCREEN) Orange else Gray,
+                                    tint = if (selectedItem == ORDER_HISTORY_SCREEN) Orange else Grey2,
                                     modifier = Modifier.clickable {
                                         selectedItem = ORDER_HISTORY_SCREEN
                                         navController.navigate(ORDER_HISTORY_SCREEN)
