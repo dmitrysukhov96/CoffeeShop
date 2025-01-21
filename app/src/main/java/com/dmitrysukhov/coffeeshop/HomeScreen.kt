@@ -68,28 +68,21 @@ fun HomeScreen() {
                 onValueChange = {
                     searchQuery = it
                     selectedFilter = "All"
-                },
-                placeholder = {
+                }, placeholder = {
                     Text(
                         text = "Find Your Coffee...", color = Grey, fontFamily = poppinsFontFamily,
                         fontSize = 10.sp, fontWeight = FontWeight.Medium
                     )
-                },
-                colors = TextFieldDefaults.colors(
+                }, colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = VeryDarkGrey, focusedContainerColor = VeryDarkGrey,
                     focusedTextColor = Color.White, focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ), leadingIcon = {
                     Icon(painterResource(R.drawable.search), contentDescription = "Search",
                         tint = Grey)
-                },
-                shape = RoundedCornerShape(15.dp), // Скругленные углы
-                modifier = Modifier
-                    .fillMaxWidth() // Заполняет весь доступный горизонтальный размер
-//                    .height(45.dp) // Высота строки поиска
+                }, shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth()
             )
         }
-
         Row(Modifier.horizontalScroll(rememberScrollState())) {
             Filter("All", isSelected = selectedFilter == "All", { selectedFilter = it })
             Spacer(modifier = Modifier.width(19.dp))
@@ -151,10 +144,10 @@ fun HomeScreen() {
             }
         }
         Text(
-            text = "Coffee beans", color = Color.White, modifier = Modifier.padding(20.dp),
-            fontSize = 16.sp, fontWeight = FontWeight.W500, fontFamily = poppinsFontFamily,
+            text = "Coffee beans", color = Color.White, modifier = Modifier.padding(vertical = 20.dp),
+            style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.W500, fontFamily = poppinsFontFamily)
         )
-        LazyRow {
+        LazyRow { //todo сделать учет строки поиска
             items(beansList) { bean ->
                 ListItem(bean, {
                     //todo тут надо добавить навигацию
@@ -163,6 +156,8 @@ fun HomeScreen() {
             }
         }
         Spacer(Modifier.height(89.dp))
+        //todo сделать надпись ничего не найдено
+        //todo локализации
     }
 }
 
