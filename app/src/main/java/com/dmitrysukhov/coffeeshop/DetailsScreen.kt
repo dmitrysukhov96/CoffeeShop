@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -92,8 +93,26 @@ fun DetailsScreen(onClick: () -> Unit) {
                     .background(Color.Black.copy(alpha = 0.5f))
                     .align(Alignment.BottomEnd)
             ) {
-                Column { Text("Robusta Beans", color = Color.White) }
-                Column {  }
+                Column(
+                    Modifier.padding(start = 22.dp, top = 31.dp)
+                ) {
+                    Text(
+                        "Robusta Beans",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Text(
+                        "From Africa",
+                        color = LightGrey,
+                        fontSize = 12.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight.W400,
+                        lineHeight = 20.sp
+                    )
+                }
+                Column { }
             }
 
         }
