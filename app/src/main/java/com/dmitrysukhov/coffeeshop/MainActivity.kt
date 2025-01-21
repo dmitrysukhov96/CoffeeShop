@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
             CoffeeShopTheme {
                 val navController = rememberNavController()
                 var showToolbar by rememberSaveable { mutableStateOf(false) }
+                showToolbar = navController.currentDestination?.route!=DETAILS_SCREEN
                 Scaffold(
                     topBar = {
                         // TODO: Сделать такой топБар как в дизайне
@@ -112,7 +113,7 @@ class MainActivity : ComponentActivity() {
                                 }
                             })
                         }
-                        composable(HOME_SCREEN) { HomeScreen() }
+                        composable(HOME_SCREEN) { HomeScreen(navController) }
                         composable(CART_SCREEN) { CartScreen() }
                         composable(FAVORITES_SCREEN) { FavouritesScreen() }
                         composable(DETAILS_SCREEN) { DetailsScreen(onClick = { }) }

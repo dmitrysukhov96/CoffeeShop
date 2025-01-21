@@ -40,12 +40,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     var selectedFilter by rememberSaveable { mutableStateOf("All") }
     var searchQuery by rememberSaveable { mutableStateOf("") }
     Column(
@@ -64,7 +64,7 @@ fun HomeScreen() {
             Modifier.padding(end = 30.dp, top = 28.dp, bottom = 28.dp)
         ) {
             TextField(
-                value = searchQuery, textStyle = TextStyle(fontFamily = poppinsFontFamily),
+                value = searchQuery, maxLines = 1, textStyle = TextStyle(fontFamily = poppinsFontFamily),
                 onValueChange = {
                     searchQuery = it
                     selectedFilter = "All"
@@ -147,10 +147,14 @@ fun HomeScreen() {
             text = "Coffee beans", color = Color.White, modifier = Modifier.padding(vertical = 20.dp),
             style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.W500, fontFamily = poppinsFontFamily)
         )
-        LazyRow { //todo сделать учет строки поиска
-            items(beansList) { bean ->
+        LazyRow {
+            items(beansList.filter {
+                searchQuery.isBlank() ||
+                (searchQuery.isNotBlank() && it.name.contains(
+                    searchQuery, ignoreCase = true))
+            }) { bean ->
                 ListItem(bean, {
-                    //todo тут надо добавить навигацию
+                    navController.navigate(DETAILS_SCREEN)
                 })
                 Spacer(Modifier.width(22.dp))
             }
@@ -271,13 +275,6 @@ fun Filter(text: String, isSelected: Boolean, onSelect: (String) -> Unit) {
         if (isSelected)
             Image(painter = painterResource(R.drawable.circle), contentDescription = null)
     }
-}
-
-
-@Preview(showSystemUi = true)
-@Composable
-fun HomeScreenPreview() {
-    HomeScreen()
 }
 
 const val HOME_SCREEN = "HomeScreen"
