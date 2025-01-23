@@ -20,11 +20,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
@@ -33,6 +35,10 @@ import androidx.navigation.compose.rememberNavController
 import com.dmitrysukhov.coffeeshop.ui.theme.CoffeeShopTheme
 import com.dmitrysukhov.coffeeshop.ui.theme.SPLASH_SCREEN
 import com.dmitrysukhov.coffeeshop.ui.theme.SplashScreen
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.HazeStyle
+import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.hazeSource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +47,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoffeeShopTheme {
                 val navController = rememberNavController()
+                val hazeState = remember { HazeState() }
                 var showToolbar by rememberSaveable { mutableStateOf(false) }
                 showToolbar = navController.currentDestination?.route!=DETAILS_SCREEN
                 Scaffold(
@@ -53,9 +60,9 @@ class MainActivity : ComponentActivity() {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .clip(RoundedCornerShape(23.dp)) //todo убрать скругление внизу
-                                    .background(Black)
+                                    .clip(RoundedCornerShape(topStart = 23.dp, topEnd = 23.dp))
                                     .height(89.dp)
+                                    .hazeEffect(hazeState, style = HazeStyle(backgroundColor = Color.Transparent, tint = null, 30.dp))
                                     .padding(horizontal = 41.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.SpaceBetween
@@ -103,7 +110,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(
                         navController = navController,
                         startDestination = SPLASH_SCREEN,
-                        modifier = Modifier.background(Black)
+                        modifier = Modifier.background(Black).hazeSource(hazeState)
                     ) {
                         composable(SPLASH_SCREEN) {
                             SplashScreen(onTimeout = {
@@ -125,6 +132,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
-
