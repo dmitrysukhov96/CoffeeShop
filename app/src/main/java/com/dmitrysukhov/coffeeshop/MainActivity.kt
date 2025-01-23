@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .clip(RoundedCornerShape(23.dp))
+                                    .clip(RoundedCornerShape(23.dp)) //todo убрать скругление внизу
                                     .background(Black)
                                     .height(89.dp)
                                     .padding(horizontal = 41.dp),
@@ -125,7 +125,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 
 
 

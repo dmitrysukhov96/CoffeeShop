@@ -32,15 +32,14 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun DetailsScreen(onClick: () -> Unit) {
-
+    //todo 1. сделать макет по дизайну
+    //todo 2. сделать вьюмодель, ложить в нее выбранный элемент
+    //todo 3. доставать его тут и наполнить реальными данными экран
     Column {
-
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(521.dp)
-
         ) {
             Image(
                 modifier = Modifier.fillMaxSize(),

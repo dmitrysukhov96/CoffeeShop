@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -265,8 +267,10 @@ fun ListItem(coffee: Any, onClick: () -> Unit) {
 @Composable
 fun Filter(text: String, isSelected: Boolean, onSelect: (String) -> Unit) {
     Column(
-        modifier = Modifier.clickable { onSelect(text) },
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.clickable(
+            onClick = { onSelect(text) }, indication = null,
+            interactionSource = remember { MutableInteractionSource() }
+        ), horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text, color = if (isSelected) Orange else Grey, fontWeight = FontWeight.SemiBold,
