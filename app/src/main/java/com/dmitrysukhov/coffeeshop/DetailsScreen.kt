@@ -7,14 +7,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,6 +28,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight.Companion.W400
+import androidx.compose.ui.text.font.FontWeight.Companion.W500
+import androidx.compose.ui.text.font.FontWeight.Companion.W600
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -96,24 +102,53 @@ fun DetailsScreen(onClick: () -> Unit) {
                     Modifier.padding(start = 22.dp, top = 31.dp)
                 ) {
                     Text(
-                        "Robusta Beans",
-                        color = Color.White,
-                        fontSize = 20.sp,
-                        fontFamily = poppinsFontFamily,
-                        fontWeight = FontWeight.SemiBold
+                        "Robusta Beans", color = Color.White, fontSize = 20.sp,
+                        fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold
                     )
                     Text(
-                        "From Africa",
-                        color = LightGrey,
-                        fontSize = 12.sp,
-                        fontFamily = poppinsFontFamily,
-                        fontWeight = FontWeight.W400,
-                        lineHeight = 20.sp
+                        "From Africa", color = LightGrey, fontSize = 12.sp,
+                        fontFamily = poppinsFontFamily, fontWeight = W400, lineHeight = 20.sp
                     )
+                    Spacer(modifier = Modifier.height(26.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            painter = painterResource(R.drawable.star), contentDescription = "",
+                            tint = Orange
+                        )
+                        Spacer(modifier = Modifier.width(5.dp))
+                        Text(
+                            "4.5", color = Color.White, fontFamily = poppinsFontFamily,
+                            fontWeight = W600, fontSize = 16.sp, lineHeight = 20.sp
+                        )
+                        Spacer(modifier = Modifier.width(3.dp))
+                        Text(
+                            "(6,879)", color = LightGrey, fontFamily = poppinsFontFamily,
+                            fontWeight = W400, fontSize = 10.sp, lineHeight = 20.sp
+                        )
+                    }
                 }
-                Column { }
+                Spacer(Modifier.weight(1F))
+                Column (Modifier.padding(end = 20.dp)){
+                    Row { }
+                    Row(
+                        modifier = Modifier
+                            .size(width = 130.dp, height = 44.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(VeryDarkGrey),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            "Medium Roasted",
+                            color = LightGrey,
+                            fontFamily = poppinsFontFamily,
+                            fontWeight = W500,
+                            fontSize = 10.sp,
+                            lineHeight = 20.sp
+                        )
+                    }
+                }
             }
-
         }
         Row(
             modifier = Modifier
@@ -146,7 +181,6 @@ const val DETAILS_SCREEN = "DetailsScreen"
 @Composable
 fun Preview() {
     DetailsScreen {
-
     }
 }
 
