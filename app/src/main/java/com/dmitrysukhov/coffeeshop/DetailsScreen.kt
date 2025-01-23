@@ -102,34 +102,56 @@ fun DetailsScreen(onClick: () -> Unit) {
                     Modifier.padding(start = 22.dp, top = 31.dp)
                 ) {
                     Text(
-                        "Robusta Beans", color = Color.White, fontSize = 20.sp,
-                        fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold
+                        "Robusta Beans",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight.SemiBold
                     )
                     Text(
-                        "From Africa", color = LightGrey, fontSize = 12.sp,
-                        fontFamily = poppinsFontFamily, fontWeight = W400, lineHeight = 20.sp
+                        "From Africa",
+                        color = LightGrey,
+                        fontSize = 12.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = W400,
+                        lineHeight = 20.sp
                     )
                     Spacer(modifier = Modifier.height(26.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
-                            painter = painterResource(R.drawable.star), contentDescription = "",
+                            painter = painterResource(R.drawable.star),
+                            contentDescription = "",
                             tint = Orange
                         )
                         Spacer(modifier = Modifier.width(5.dp))
                         Text(
-                            "4.5", color = Color.White, fontFamily = poppinsFontFamily,
-                            fontWeight = W600, fontSize = 16.sp, lineHeight = 20.sp
+                            "4.5",
+                            color = Color.White,
+                            fontFamily = poppinsFontFamily,
+                            fontWeight = W600,
+                            fontSize = 16.sp,
+                            lineHeight = 20.sp
                         )
                         Spacer(modifier = Modifier.width(3.dp))
                         Text(
-                            "(6,879)", color = LightGrey, fontFamily = poppinsFontFamily,
-                            fontWeight = W400, fontSize = 10.sp, lineHeight = 20.sp
+                            "(6,879)",
+                            color = LightGrey,
+                            fontFamily = poppinsFontFamily,
+                            fontWeight = W400,
+                            fontSize = 10.sp,
+                            lineHeight = 20.sp
                         )
                     }
                 }
                 Spacer(Modifier.weight(1F))
-                Column (Modifier.padding(end = 20.dp)){
-                    Row { }
+                Column(Modifier.padding(end = 20.dp)) {
+                    Row(modifier = Modifier.padding(top = 19.dp)) {
+                        Block(iconRes = R.drawable.coffee, text = "Bean")
+                        Spacer(modifier = Modifier.width(20.dp))
+                        Block(iconRes = R.drawable.geo, text = "Africa")
+
+                    }
+                    Spacer(modifier = Modifier.height(14.dp))
                     Row(
                         modifier = Modifier
                             .size(width = 130.dp, height = 44.dp)
@@ -150,24 +172,27 @@ fun DetailsScreen(onClick: () -> Unit) {
                 }
             }
         }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(121.dp),
-            verticalAlignment = Alignment.Bottom,
-            horizontalArrangement = Arrangement.Center
-        ) {
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(text = "Description", modifier = Modifier.padding(horizontal = 19.dp), color = LightGrey, fontWeight = W600, fontFamily = poppinsFontFamily)
+        Spacer(modifier = Modifier.height(15.dp))
+        Text(color = Color.White,  fontFamily = poppinsFontFamily,modifier = Modifier.padding(horizontal = 19.dp),text = "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! ")
+        Spacer(modifier = Modifier.height(15.dp))
 
-        }
         Button(
-            onClick = onClick, modifier = Modifier
+
+            onClick = onClick,
+            modifier = Modifier
                 .width(240.dp)
-                .height(60.dp), colors = ButtonDefaults.buttonColors(
+                .height(60.dp),
+            colors = ButtonDefaults.buttonColors(
                 containerColor = Orange, contentColor = Color.White
-            ), shape = RoundedCornerShape(16.dp)
+            ),
+            shape = RoundedCornerShape(16.dp)
         ) {
             Text(
-                text = "Add to Cart", fontSize = 16.sp, fontWeight = FontWeight.Bold,
+                text = "Add to Cart",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 style = TextStyle(fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold)
             )
@@ -180,10 +205,36 @@ const val DETAILS_SCREEN = "DetailsScreen"
 @Preview
 @Composable
 fun Preview() {
-    DetailsScreen {
-    }
+    DetailsScreen {}
 }
 
+@Composable
+fun Block(iconRes: Int, text: String) {
+    Column(
+
+        modifier = Modifier
+            .size(55.dp)
+            .clip(shape = RoundedCornerShape(10.dp))
+            .background(VeryDarkGrey),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Icon(
+            modifier = Modifier.size(20.dp),
+            painter = painterResource(id = iconRes),
+            contentDescription = null,
+            tint = Orange
+        )
+        Text(
+            text = text,
+            color = LightGrey,
+            fontFamily = poppinsFontFamily,
+            fontSize = 10.sp,
+            lineHeight = 20.sp,
+            fontWeight = W500
+        )
+    }
+}
 
 
 
