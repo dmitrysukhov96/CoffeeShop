@@ -173,11 +173,30 @@ fun DetailsScreen(onClick: () -> Unit) {
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
-        Text(text = "Description", modifier = Modifier.padding(horizontal = 19.dp), color = LightGrey, fontWeight = W600, fontFamily = poppinsFontFamily)
+        Text(
+            text = "Description",
+            modifier = Modifier.padding(horizontal = 19.dp),
+            color = LightGrey,
+            fontWeight = W600,
+            fontFamily = poppinsFontFamily
+        )
         Spacer(modifier = Modifier.height(15.dp))
-        Text(color = Color.White,  fontFamily = poppinsFontFamily,modifier = Modifier.padding(horizontal = 19.dp),text = "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! ")
-        Spacer(modifier = Modifier.height(15.dp))
-
+        Text(
+            color = Color.White,
+            fontFamily = poppinsFontFamily,
+            modifier = Modifier.padding(horizontal = 19.dp),
+            text = "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = "Size",
+            modifier = Modifier.padding(horizontal = 19.dp),
+            color = LightGrey,
+            fontWeight = W600,
+            fontFamily = poppinsFontFamily
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        ThreeButtonsPanel("250gm", "500gm", "1000gm", "250gm")
         Button(
 
             onClick = onClick,
@@ -237,5 +256,28 @@ fun Block(iconRes: Int, text: String) {
 }
 
 
+@Composable
+fun ThreeButtonsPanel(option1: String, option2: String, option3: String, selectedOption: String) {
+    Row(Modifier.padding(horizontal = 20.dp)) {
+        OptionButton(Modifier.weight(1f), option1, selectedOption == option1)
+        Spacer(Modifier.width(25.dp))
+        OptionButton(Modifier.weight(1f), option2, selectedOption == option2)
+        Spacer(Modifier.width(25.dp))
+        OptionButton(Modifier.weight(1f), option3, selectedOption == option3)
+    }
 
 
+}
+
+@Composable
+fun OptionButton(modifier: Modifier, text: String, isSelected: Boolean) {
+    Box(modifier = modifier.height(40.dp).clip(RoundedCornerShape(10.dp)).background(VeryDarkGrey)) {
+        Text(
+            text = text,
+            color = if (isSelected) Orange else LightGrey,
+            modifier=Modifier.align(Alignment.Center)
+        )
+    }
+
+
+}
