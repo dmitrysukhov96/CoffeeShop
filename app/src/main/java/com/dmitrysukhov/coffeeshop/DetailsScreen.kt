@@ -254,8 +254,6 @@ fun Block(iconRes: Int, text: String) {
         )
     }
 }
-
-
 @Composable
 fun ThreeButtonsPanel(option1: String, option2: String, option3: String, selectedOption: String) {
     Row(Modifier.padding(horizontal = 20.dp)) {
@@ -265,10 +263,7 @@ fun ThreeButtonsPanel(option1: String, option2: String, option3: String, selecte
         Spacer(Modifier.width(25.dp))
         OptionButton(Modifier.weight(1f), option3, selectedOption == option3)
     }
-
-
 }
-
 @Composable
 fun OptionButton(modifier: Modifier, text: String, isSelected: Boolean) {
     Box(modifier = modifier.height(40.dp).clip(RoundedCornerShape(10.dp)).background(VeryDarkGrey)) {
@@ -278,6 +273,4 @@ fun OptionButton(modifier: Modifier, text: String, isSelected: Boolean) {
             modifier=Modifier.align(Alignment.Center)
         )
     }
-
-
 }
