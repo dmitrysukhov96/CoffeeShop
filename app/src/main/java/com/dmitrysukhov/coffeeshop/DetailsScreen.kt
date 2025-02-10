@@ -1,6 +1,7 @@
 package com.dmitrysukhov.coffeeshop
 
 
+import androidx.compose.animation.core.animateSizeAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,12 +27,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.W400
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -183,9 +187,10 @@ fun DetailsScreen(onClick: () -> Unit) {
         Spacer(modifier = Modifier.height(15.dp))
         Text(
             color = Color.White,
-            fontFamily = poppinsFontFamily,
+            fontFamily = poppinsFontFamily, fontSize = 12.sp,
             modifier = Modifier.padding(horizontal = 19.dp),
             text = "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
@@ -197,25 +202,68 @@ fun DetailsScreen(onClick: () -> Unit) {
         )
         Spacer(modifier = Modifier.height(12.dp))
         ThreeButtonsPanel("250gm", "500gm", "1000gm", "250gm")
-        Button(
 
-            onClick = onClick,
-            modifier = Modifier
-                .width(240.dp)
-                .height(60.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Orange, contentColor = Color.White
-            ),
-            shape = RoundedCornerShape(16.dp)
+        Spacer(modifier = Modifier.height(28.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "Add to Cart",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                style = TextStyle(fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold)
-            )
+
+            Column(
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Price",
+                    modifier = Modifier.padding(start = 40.dp),
+                    color = LightGrey,
+                    fontWeight = W500,
+                    fontFamily = poppinsFontFamily,
+                )
+                Spacer(modifier = Modifier.height(3.dp))
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(style = SpanStyle(color = Color(0xFFD17842))) {
+                            append("$")
+                        }
+                        withStyle(style = SpanStyle(color = Color.White)) {
+                            append(" 10.50")
+                        }
+                    },
+                    modifier = Modifier.padding(start = 20.dp),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = poppinsFontFamily,
+                )
+            }
+
+
+            Button(
+                onClick = onClick,
+                modifier = Modifier
+                    .width(240.dp)
+                    .height(60.dp)
+                    .padding(end = 20.5.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Orange, contentColor = Color.White
+                ),
+                shape = RoundedCornerShape(16.dp)
+            ) {
+                Text(
+                    text = "Add to Cart",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                )
+            }
         }
+
     }
 }
 
@@ -254,6 +302,7 @@ fun Block(iconRes: Int, text: String) {
         )
     }
 }
+
 @Composable
 fun ThreeButtonsPanel(option1: String, option2: String, option3: String, selectedOption: String) {
     Row(Modifier.padding(horizontal = 20.dp)) {
@@ -264,13 +313,19 @@ fun ThreeButtonsPanel(option1: String, option2: String, option3: String, selecte
         OptionButton(Modifier.weight(1f), option3, selectedOption == option3)
     }
 }
+
 @Composable
 fun OptionButton(modifier: Modifier, text: String, isSelected: Boolean) {
-    Box(modifier = modifier.height(40.dp).clip(RoundedCornerShape(10.dp)).background(VeryDarkGrey)) {
+    Box(
+        modifier = modifier
+            .height(40.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(VeryDarkGrey)
+    ) {
         Text(
             text = text,
             color = if (isSelected) Orange else LightGrey,
-            modifier=Modifier.align(Alignment.Center)
+            modifier = Modifier.align(Alignment.Center)
         )
     }
 }
