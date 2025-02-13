@@ -48,21 +48,28 @@ class MainActivity : ComponentActivity() {
             CoffeeShopTheme {
                 val navController = rememberNavController()
                 val hazeState = remember { HazeState() }
-                var showToolbar by rememberSaveable { mutableStateOf(false) }
-                showToolbar = navController.currentDestination?.route!=DETAILS_SCREEN
+                var showBottomBar by rememberSaveable { mutableStateOf(false) }
+                showBottomBar = navController.currentDestination?.route != DETAILS_SCREEN
                 Scaffold(
                     topBar = {
                         // TODO: Сделать такой топБар как в дизайне
                     },
                     bottomBar = {
                         var selectedItem by rememberSaveable { mutableStateOf(HOME_SCREEN) }
-                        AnimatedVisibility(showToolbar, enter = EnterTransition.None) {
+                        AnimatedVisibility(showBottomBar, enter = EnterTransition.None) {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .clip(RoundedCornerShape(topStart = 23.dp, topEnd = 23.dp))
                                     .height(89.dp)
-                                    .hazeEffect(hazeState, style = HazeStyle(backgroundColor = Color.Transparent, tint = null, 30.dp))
+                                    .hazeEffect(
+                                        hazeState,
+                                        style = HazeStyle(
+                                            backgroundColor = Color.Transparent,
+                                            tint = null,
+                                            30.dp
+                                        )
+                                    )
                                     .padding(horizontal = 41.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.SpaceBetween
@@ -110,13 +117,15 @@ class MainActivity : ComponentActivity() {
                     NavHost(
                         navController = navController,
                         startDestination = SPLASH_SCREEN,
-                        modifier = Modifier.background(Black).hazeSource(hazeState)
+                        modifier = Modifier
+                            .background(Black)
+                            .hazeSource(hazeState)
                     ) {
                         composable(SPLASH_SCREEN) {
                             SplashScreen(onTimeout = {
                                 navController.navigate(HOME_SCREEN) {
                                     popUpTo(SPLASH_SCREEN) { inclusive = true }
-                                    showToolbar = true
+                                    showBottomBar = true
                                 }
                             })
                         }
@@ -125,7 +134,6 @@ class MainActivity : ComponentActivity() {
                         composable(FAVORITES_SCREEN) { FavouritesScreen() }
                         composable(DETAILS_SCREEN) { DetailsScreen(onClick = { }) }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
-                        composable(DETAILS_SCREEN) { DetailsScreen(onClick = {}) }
                     }
                 }
             }

@@ -1,7 +1,6 @@
 package com.dmitrysukhov.coffeeshop
 
 
-import androidx.compose.animation.core.animateSizeAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -45,48 +46,16 @@ fun DetailsScreen(onClick: () -> Unit) {
     //todo 1. сделать макет по дизайну
     //todo 2. сделать вьюмодель, ложить в нее выбранный элемент
     //todo 3. доставать его тут и наполнить реальными данными экран
-    Column {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(521.dp)
-        ) {
-            Image(
-                modifier = Modifier.fillMaxSize(),
-                painter = painterResource(id = R.drawable.beans_2),
-                contentDescription = null
-            )
-            Row {
-
-            }
-
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(121.dp),
-            verticalAlignment = Alignment.Bottom,
-            horizontalArrangement = Arrangement.Center
-        ) {
-
-        }
-    }
-
-
     Column(
         Modifier
             .fillMaxSize()
             .background(Black)
-    )
-
-    {
-
-
+            .verticalScroll(rememberScrollState())
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(521.dp)
-
         ) {
             Image(
                 modifier = Modifier.fillMaxSize(),
@@ -263,7 +232,7 @@ fun DetailsScreen(onClick: () -> Unit) {
                 )
             }
         }
-
+        Spacer(Modifier.height(100.dp))
     }
 }
 
