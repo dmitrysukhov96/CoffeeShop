@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -46,6 +47,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CoffeeShopTheme {
+                val viewModel:CoffeeViewModel = viewModel()
                 val navController = rememberNavController()
                 val hazeState = remember { HazeState() }
                 var showBottomBar by rememberSaveable { mutableStateOf(false) }
@@ -129,10 +131,10 @@ class MainActivity : ComponentActivity() {
                                 }
                             })
                         }
-                        composable(HOME_SCREEN) { HomeScreen(navController) }
+                        composable(HOME_SCREEN) { HomeScreen(navController, viewModel) }
                         composable(CART_SCREEN) { CartScreen() }
                         composable(FAVORITES_SCREEN) { FavouritesScreen() }
-                        composable(DETAILS_SCREEN) { DetailsScreen(onClick = { }) }
+                        composable(DETAILS_SCREEN) { DetailsScreen(onClick = { }, viewModel = viewModel) }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
                     }
                 }

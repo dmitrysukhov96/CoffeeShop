@@ -1,7 +1,5 @@
 package com.dmitrysukhov.coffeeshop
 
-
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -34,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalGraphicsContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -45,19 +42,13 @@ import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import java.util.concurrent.locks.Lock
 
 @Composable
-fun DetailsScreen(onClick: () -> Unit) {
-    //todo 1. сделать макет по дизайну
-    //todo 2. сделать вьюмодель, ложить в нее выбранный элемент
-    //todo 3. доставать его тут и наполнить реальными данными экран
-    val viewModel:CoffeeViewModel = viewModel()
-    Log.e("Timon",viewModel.selectedItem.toString())
+fun DetailsScreen(onClick: () -> Unit, viewModel: CoffeeViewModel) {
+    val coffee = viewModel.selectedItem as? Coffee
+    val bean = viewModel.selectedItem as? Beans
     Column(
         Modifier
             .fillMaxSize()
@@ -205,12 +196,6 @@ fun DetailsScreen(onClick: () -> Unit) {
 }
 
 const val DETAILS_SCREEN = "DetailsScreen"
-
-@Preview
-@Composable
-fun Preview() {
-    DetailsScreen {}
-}
 
 @Composable
 fun Block(iconRes: Int, text: String) {
