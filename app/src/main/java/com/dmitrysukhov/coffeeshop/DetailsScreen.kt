@@ -62,7 +62,7 @@ fun DetailsScreen(onClick: () -> Unit, viewModel: CoffeeViewModel) {
         ) {
             Image(
                 modifier = Modifier.fillMaxSize(),
-                painter = painterResource(id = R.drawable.beans_2),
+                painter = painterResource(id = coffee?.imageRes ?: bean?.imageRes!!),
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
@@ -78,11 +78,11 @@ fun DetailsScreen(onClick: () -> Unit, viewModel: CoffeeViewModel) {
                     Modifier.padding(start = 22.dp, top = 31.dp)
                 ) {
                     Text(
-                        "Robusta Beans", color = Color.White, fontSize = 20.sp,
+                        coffee?.name ?: bean?.name!!, color = Color.White, fontSize = 20.sp,
                         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold
                     )
                     Text(
-                        "From Africa", color = LightGrey, fontSize = 12.sp,
+                        coffee?.milkType ?: bean?.company!!, color = LightGrey, fontSize = 12.sp,
                         fontFamily = poppinsFontFamily, fontWeight = W400, lineHeight = 20.sp
                     )
                     Spacer(modifier = Modifier.height(26.dp))
@@ -93,12 +93,16 @@ fun DetailsScreen(onClick: () -> Unit, viewModel: CoffeeViewModel) {
                         )
                         Spacer(modifier = Modifier.width(5.dp))
                         Text(
-                            "4.5", color = Color.White, fontFamily = poppinsFontFamily,
-                            fontWeight = W600, fontSize = 16.sp, lineHeight = 20.sp
+                            (coffee?.grade ?: bean?.grade!!).toString(),
+                            color = Color.White,
+                            fontFamily = poppinsFontFamily,
+                            fontWeight = W600,
+                            fontSize = 16.sp,
+                            lineHeight = 20.sp
                         )
                         Spacer(modifier = Modifier.width(3.dp))
                         Text(
-                            "(6,879)", color = LightGrey, fontFamily = poppinsFontFamily,
+                            "(${coffee?.ratingsCount ?: bean?.ratingsCount!!})", color = LightGrey, fontFamily = poppinsFontFamily,
                             fontWeight = W400, fontSize = 10.sp, lineHeight = 20.sp
                         )
                     }
@@ -137,8 +141,7 @@ fun DetailsScreen(onClick: () -> Unit, viewModel: CoffeeViewModel) {
         Text(
             color = Color.White, fontFamily = poppinsFontFamily, fontSize = 12.sp,
             modifier = Modifier.padding(horizontal = 19.dp),
-            text = "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
-
+            text = coffee?.description ?: bean?.description!!
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
@@ -165,10 +168,10 @@ fun DetailsScreen(onClick: () -> Unit, viewModel: CoffeeViewModel) {
                 Text(
                     text = buildAnnotatedString {
                         withStyle(style = SpanStyle(color = Color(0xFFD17842))) {
-                            append("$")
+                            append("$ ")
                         }
                         withStyle(style = SpanStyle(color = Color.White)) {
-                            append(" 10.50")
+                            append((coffee?.price ?: bean?.price!!).toString())
                         }
                     },
                     modifier = Modifier.padding(start = 20.dp), fontSize = 20.sp,
