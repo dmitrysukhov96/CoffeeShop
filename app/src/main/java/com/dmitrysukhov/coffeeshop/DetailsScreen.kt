@@ -23,6 +23,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -44,9 +45,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 @Composable
-fun DetailsScreen(onClick: () -> Unit, viewModel: CoffeeViewModel) {
+fun DetailsScreen(
+    onClick: () -> Unit, viewModel: CoffeeViewModel,
+    setTopBarState: (TopBarState) -> Unit, navController: NavHostController
+) {
+    LaunchedEffect(Unit) {
+        setTopBarState(TopBarState(title = "") {
+            TopBarIcon(iconRes = R.drawable.arrow) { navController.navigateUp() }
+            TopBarIcon(iconRes = R.drawable.fav) {}
+        })
+    }
     val coffee = viewModel.selectedItem as? Coffee
     val bean = viewModel.selectedItem as? Beans
     Column(

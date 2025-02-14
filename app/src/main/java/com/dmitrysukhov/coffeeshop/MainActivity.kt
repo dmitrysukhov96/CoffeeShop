@@ -2,22 +2,28 @@ package com.dmitrysukhov.coffeeshop
 
 import CART_SCREEN
 import CartScreen
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.EnterTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,6 +42,7 @@ import androidx.navigation.compose.rememberNavController
 import com.dmitrysukhov.coffeeshop.ui.theme.CoffeeShopTheme
 import com.dmitrysukhov.coffeeshop.ui.theme.SPLASH_SCREEN
 import com.dmitrysukhov.coffeeshop.ui.theme.SplashScreen
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeStyle
 import dev.chrisbanes.haze.hazeEffect
@@ -44,8 +51,11 @@ import dev.chrisbanes.haze.hazeSource
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
+            var topBarState by remember { mutableStateOf(TopBarState()) }
+            val setTopBarState: (TopBarState) -> Unit = { topBarState = it }
+            val systemUiController = rememberSystemUiController()
+            SideEffect { systemUiController.setStatusBarColor(color = Black, darkIcons = false) }
             CoffeeShopTheme {
                 val viewModel:CoffeeViewModel = viewModel()
                 val navController = rememberNavController()
@@ -54,7 +64,15 @@ class MainActivity : ComponentActivity() {
                 showBottomBar = navController.currentDestination?.route != DETAILS_SCREEN
                 Scaffold(
                     topBar = {
-                        // TODO: Сделать такой топБар как в дизайне
+                        Box(modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 16.dp)
+                            .padding(horizontal = 22.dp)) {
+                            Row(modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                            ) { topBarState.topBarActions.invoke(this) }
+                            Text(topBarState.title, color = Color.White, modifier =  Modifier.align(Alignment.Center))
+                        }
                     },
                     bottomBar = {
                         var selectedItem by rememberSaveable { mutableStateOf(HOME_SCREEN) }
@@ -64,16 +82,22 @@ class MainActivity : ComponentActivity() {
                                     .fillMaxWidth()
                                     .clip(RoundedCornerShape(topStart = 23.dp, topEnd = 23.dp))
                                     .height(89.dp)
-                                    .hazeEffect(
-                                        hazeState,
-                                        style = HazeStyle(
-                                            backgroundColor = Color.Transparent,
-                                            tint = null,
-                                            30.dp
-                                        )
+                                    .then(
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                                            Modifier.hazeEffect(
+                                                hazeState,
+                                                style = HazeStyle(
+                                                    backgroundColor = Color.Transparent,
+                                                    tint = null, 30.dp
+                                                )
+                                            )
+                                        } else Modifier.background(Black.copy(0.7f))
                                     )
-                                    .padding(horizontal = 41.dp),
-                                verticalAlignment = Alignment.CenterVertically,
+                                    .padding(horizontal = 41.dp)
+                                    .padding(
+                                        bottom = WindowInsets.navigationBars.asPaddingValues()
+                                            .calculateBottomPadding()
+                                    ), verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Icon(
@@ -117,8 +141,7 @@ class MainActivity : ComponentActivity() {
                     }
                 ) { innerPadding ->
                     NavHost(
-                        navController = navController,
-                        startDestination = SPLASH_SCREEN,
+                        navController = navController, startDestination = SPLASH_SCREEN,
                         modifier = Modifier
                             .background(Black)
                             .hazeSource(hazeState)
@@ -131,10 +154,14 @@ class MainActivity : ComponentActivity() {
                                 }
                             })
                         }
-                        composable(HOME_SCREEN) { HomeScreen(navController, viewModel) }
-                        composable(CART_SCREEN) { CartScreen() }
+                        composable(HOME_SCREEN) {
+                            HomeScreen(navController, viewModel, setTopBarState)
+                        }
+                        composable(CART_SCREEN) { CartScreen(setTopBarState) }
                         composable(FAVORITES_SCREEN) { FavouritesScreen() }
-                        composable(DETAILS_SCREEN) { DetailsScreen(onClick = { }, viewModel = viewModel) }
+                        composable(DETAILS_SCREEN) {
+                            DetailsScreen({ /*todo*/ }, viewModel, setTopBarState, navController)
+                        }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
                     }
                 }

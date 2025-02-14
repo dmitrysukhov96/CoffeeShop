@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,7 +48,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
 @Composable
-fun HomeScreen(navController: NavHostController, viewModel: CoffeeViewModel) {
+fun HomeScreen(
+    navController: NavHostController, viewModel: CoffeeViewModel,
+    setTopBarState: (TopBarState) -> Unit
+) {
+    LaunchedEffect(Unit) {
+        setTopBarState(TopBarState(title = "") {
+            TopBarIcon(iconRes = R.drawable.kartochka) {}
+            TopBarIcon(imgRes = R.drawable.man) {}
+        })
+    }
     var selectedFilter by rememberSaveable { mutableStateOf("All") }
     var searchQuery by rememberSaveable { mutableStateOf("") }
     Column(
@@ -181,7 +191,7 @@ fun ListItem(coffee: Any, onClick: () -> Unit) {
             .clip(RoundedCornerShape(23.dp))
             .background(
                 brush = Brush.linearGradient(
-                    colors = listOf(Color(0xFF262B33), Color(0x00262B33)),
+                    colors = listOf(DarkGrey2, DarkGrey2.copy(0.0f)),
                     start = Offset(0f, 0f), end = Offset(1000f, 1000f)
                 )
             )
