@@ -44,10 +44,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
+    val viewModel:CoffeeViewModel = viewModel()
     var selectedFilter by rememberSaveable { mutableStateOf("All") }
     var searchQuery by rememberSaveable { mutableStateOf("") }
     Column(
@@ -140,7 +142,8 @@ fun HomeScreen(navController: NavHostController) {
                             searchQuery, ignoreCase = true))
             }) { coffee ->
                 ListItem(coffee, {
-
+                    viewModel.selectedItem = coffee
+                    navController.navigate(DETAILS_SCREEN)
                 })
                 Spacer(Modifier.width(22.dp))
             }
@@ -156,6 +159,7 @@ fun HomeScreen(navController: NavHostController) {
                     searchQuery, ignoreCase = true))
             }) { bean ->
                 ListItem(bean, {
+                    viewModel.selectedItem = bean
                     navController.navigate(DETAILS_SCREEN)
                 })
                 Spacer(Modifier.width(22.dp))
