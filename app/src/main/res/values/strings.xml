@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">CoffeeShop</string>
+    <string name="app_name" >CoffeeShop</string>
+
+
+        <string name="add_to_cart">Add to Cart</string>
+        <string name="description">Description</string>
+        <string name="size">Size</string>
+        <string name="price">Price</string>
+        <string name="added_to_cart">Added to cart</string>
+
+
 </resources>
+

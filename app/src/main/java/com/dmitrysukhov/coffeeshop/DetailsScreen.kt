@@ -1,5 +1,7 @@
 package com.dmitrysukhov.coffeeshop
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -33,7 +35,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -49,7 +53,7 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun DetailsScreen(
-    onClick: () -> Unit, viewModel: CoffeeViewModel,
+  viewModel: CoffeeViewModel,
     setTopBarState: (TopBarState) -> Unit, navController: NavHostController
 ) {
     LaunchedEffect(Unit) {
@@ -113,8 +117,12 @@ fun DetailsScreen(
                         )
                         Spacer(modifier = Modifier.width(3.dp))
                         Text(
-                            "(${coffee?.ratingsCount ?: bean?.ratingsCount!!})", color = LightGrey, fontFamily = poppinsFontFamily,
-                            fontWeight = W400, fontSize = 10.sp, lineHeight = 20.sp
+                            "(${coffee?.ratingsCount ?: bean?.ratingsCount!!})",
+                            color = LightGrey,
+                            fontFamily = poppinsFontFamily,
+                            fontWeight = W400,
+                            fontSize = 10.sp,
+                            lineHeight = 20.sp
                         )
                     }
                 }
@@ -145,7 +153,7 @@ fun DetailsScreen(
         }
         Spacer(modifier = Modifier.height(20.dp))
         Text(
-            text = "Description", modifier = Modifier.padding(horizontal = 19.dp),
+            text = stringResource(id = R.string.description), modifier = Modifier.padding(horizontal = 19.dp),
             color = LightGrey, fontWeight = W600, fontFamily = poppinsFontFamily
         )
         Spacer(modifier = Modifier.height(15.dp))
@@ -156,12 +164,18 @@ fun DetailsScreen(
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "Size", modifier = Modifier.padding(horizontal = 19.dp), color = LightGrey,
+            text = stringResource(id = R.string.size), modifier = Modifier.padding(horizontal = 19.dp), color = LightGrey,
             fontWeight = W600, fontFamily = poppinsFontFamily
         )
         Spacer(modifier = Modifier.height(12.dp))
-        var selectedOption by rememberSaveable { mutableStateOf("250gm") }
-        ThreeButtonsPanel("250gm", "500gm", "1000gm", selectedOption, { selectedOption = it })
+        var selectedOption by rememberSaveable { mutableStateOf(1) }
+        val context = LocalContext.current
+        ThreeButtonsPanel(
+           if (coffee != null )"S" else  "250gm",
+            if (coffee != null )"M" else  "500gm",
+            if (coffee != null )"L" else  "1000gm", selectedOption
+        ) { selectedOption = it
+        }
         Spacer(modifier = Modifier.height(28.dp))
         Row(
             modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
@@ -172,7 +186,7 @@ fun DetailsScreen(
                 horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Price", modifier = Modifier.padding(start = 40.dp), color = LightGrey,
+                    text = stringResource(id = R.string.price), modifier = Modifier.padding(start = 40.dp), color = LightGrey,
                     fontWeight = W500, fontFamily = poppinsFontFamily,
                 )
                 Spacer(modifier = Modifier.height(3.dp))
@@ -182,7 +196,10 @@ fun DetailsScreen(
                             append("$ ")
                         }
                         withStyle(style = SpanStyle(color = Color.White)) {
-                            append((coffee?.price ?: bean?.price!!).toString())
+                            val price = coffee?.price ?: bean?.price!!
+                            val newPrice = if (selectedOption == 3) price * 4 else
+                                if (selectedOption == 2) price * 2 else price
+                            append(newPrice.toString())
                         }
                     },
                     modifier = Modifier.padding(start = 20.dp), fontSize = 20.sp,
@@ -190,7 +207,7 @@ fun DetailsScreen(
                 )
             }
             Button(
-                onClick = onClick, modifier = Modifier
+                onClick = {Toast.makeText(context, context.getString(R.string.added_to_cart), Toast.LENGTH_LONG).show() }, modifier = Modifier
                     .width(240.dp)
                     .height(60.dp)
                     .padding(end = 20.5.dp), colors = ButtonDefaults.buttonColors(
@@ -198,9 +215,12 @@ fun DetailsScreen(
                 ), shape = RoundedCornerShape(16.dp)
             ) {
                 Text(
-                    text = "Add to Cart", fontSize = 16.sp, fontWeight = FontWeight.Bold,
+
+                    text = stringResource(id = R.string.add_to_cart), fontSize = 16.sp, fontWeight = FontWeight.Bold,
+
                     textAlign = TextAlign.Center, style = TextStyle(
                         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold
+
                     )
                 )
             }
@@ -234,15 +254,15 @@ fun Block(iconRes: Int, text: String) {
 
 @Composable
 fun ThreeButtonsPanel(
-    option1: String, option2: String, option3: String, selectedOption: String,
-    onSelect: (String) -> Unit
+    option1: String, option2: String, option3: String, selectedOption: Int,
+    onSelect: (Int) -> Unit
 ) {
     Row(Modifier.padding(horizontal = 20.dp)) {
-        OptionButton(Modifier.weight(1f), option1, selectedOption == option1, { onSelect(option1) })
+        OptionButton(Modifier.weight(1f), option1, selectedOption == 1) { onSelect(1) }
         Spacer(Modifier.width(25.dp))
-        OptionButton(Modifier.weight(1f), option2, selectedOption == option2, { onSelect(option2) })
+        OptionButton(Modifier.weight(1f), option2, selectedOption == 2) { onSelect(2) }
         Spacer(Modifier.width(25.dp))
-        OptionButton(Modifier.weight(1f), option3, selectedOption == option3, { onSelect(option3) })
+        OptionButton(Modifier.weight(1f), option3, selectedOption == 3) { onSelect(3) }
     }
 }
 

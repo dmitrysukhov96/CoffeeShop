@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+    <string name="app_name">Кав\'ярня</string>
+    <string name="add_to_cart">Додати в кошик</string>
+    <string name="description">Опис</string>
+    <string name="size">Розмір</string>
+    <string name="price">Ціна</string>
+    <string name="added_to_cart">Додано в кошик</string>
+</resources>

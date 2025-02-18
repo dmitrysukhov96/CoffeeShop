@@ -160,7 +160,7 @@ class MainActivity : ComponentActivity() {
                         composable(CART_SCREEN) { CartScreen(setTopBarState) }
                         composable(FAVORITES_SCREEN) { FavouritesScreen() }
                         composable(DETAILS_SCREEN) {
-                            DetailsScreen({ /*todo*/ }, viewModel, setTopBarState, navController)
+                            DetailsScreen( viewModel, setTopBarState, navController)
                         }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
                     }
