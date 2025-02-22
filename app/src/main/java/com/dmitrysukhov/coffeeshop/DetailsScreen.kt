@@ -171,11 +171,12 @@ fun DetailsScreen(
         var selectedOption by rememberSaveable { mutableStateOf(1) }
         val context = LocalContext.current
         ThreeButtonsPanel(
-           if (coffee != null )"S" else  "250gm",
-            if (coffee != null )"M" else  "500gm",
-            if (coffee != null )"L" else  "1000gm", selectedOption,
-        ) { selectedOption = it
-        }
+            if (coffee != null) "S" else "250gm",
+            if (coffee != null) "M" else "500gm",
+            if (coffee != null) "L" else "1000gm",
+            selectedOption,
+
+        ) { selectedOption = it }
         Spacer(modifier = Modifier.height(28.dp))
         Row(
             modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
@@ -277,7 +278,11 @@ fun OptionButton(modifier: Modifier, text: String, isSelected: Boolean, onClick:
             .clickable { onClick() }
     ) {
         Text(
-            text = text, color = if (isSelected) Orange else LightGrey,
+            text = text,
+            color = if (isSelected) Orange else LightGrey,
+            fontFamily = poppinsFontFamily,
+            fontWeight = W500,
+            fontSize = 12.sp,
             modifier = Modifier.align(Alignment.Center)
         )
     }
