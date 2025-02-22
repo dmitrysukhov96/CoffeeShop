@@ -1,6 +1,6 @@
 package com.dmitrysukhov.coffeeshop
 
-import android.content.Context
+
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -173,7 +173,7 @@ fun DetailsScreen(
         ThreeButtonsPanel(
            if (coffee != null )"S" else  "250gm",
             if (coffee != null )"M" else  "500gm",
-            if (coffee != null )"L" else  "1000gm", selectedOption
+            if (coffee != null )"L" else  "1000gm", selectedOption,
         ) { selectedOption = it
         }
         Spacer(modifier = Modifier.height(28.dp))
