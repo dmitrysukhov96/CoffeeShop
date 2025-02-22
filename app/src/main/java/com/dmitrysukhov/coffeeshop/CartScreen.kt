@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -56,17 +55,15 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
             modifier = Modifier
                 .width(330.dp)
                 .height(255.dp)
-                .clip(RoundedCornerShape(23.dp))
+                .clip(RoundedCornerShape(23.dp))//todo первым делом весь этот МОДИФАЕР с его параметрами перемести в колумн который ниже
+                //чтоб у колумна в круглых был этот модифаер
+//                 todo а этот бокс который тут начинается а там ниже его скобочка - его удали
                 .background(
                     brush = Brush.linearGradient(
                         colors = listOf(DarkGrey2, DarkGrey2.copy(0.0f)),
                         start = Offset(0f, 0f), end = Offset(1000f, 1000f)
                     )
-                )
-
-                .padding(17.dp)
-        ) {
-            Column {
+                ).padding(17.dp)) {
                 Row {
                     Image(
                         painter = painterResource(id = R.drawable.coffee_1),
@@ -75,7 +72,6 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                             .width(100.dp)
                             .height(100.dp)
                             .clip(RoundedCornerShape(16.dp))
-
                     )
                     Column {
                         Text(
@@ -147,8 +143,7 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                         )
                     }
                     Box(
-                        modifier =
-                        Modifier
+                        modifier = Modifier
                             .background(color = Color.Black)
                             .width(72.dp)
                             .height(35.dp)
@@ -162,7 +157,7 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                         )
                     }
 
-                }
+                } // todo это скобочка закрывающая роу, а у тебя кнопка ниже лежит снаружи роу. тебе надо ее поместить вовнутрь роу который выше. то есть до этой скобки
                 Box(
                     modifier = Modifier
                         .size(28.dp)
@@ -231,7 +226,8 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                         )
                     }
 
-                }
+                }// todo то же самое тут. а вообще лучше удали все эти одинаковые строки.
+                    //todo сделай одну строку чтоб она была прям идеальная как в дизайне, тогда можно копировать и вставлять.
                 Box(
                     modifier = Modifier
                         .size(28.dp)
@@ -318,10 +314,8 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
             }
 
         }
-    }
+//    } //todo тут удалить скобочку от бокса
 }
-
-
 
 
 const val CART_SCREEN = "CartScreen"
