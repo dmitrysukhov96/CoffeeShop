@@ -76,23 +76,32 @@ fun HomeScreen(
             Modifier.padding(end = 30.dp, top = 28.dp, bottom = 28.dp)
         ) {
             TextField(
-                value = searchQuery, maxLines = 1, textStyle = TextStyle(fontFamily = poppinsFontFamily),
+                value = searchQuery,
+                maxLines = 1,
+                textStyle = TextStyle(fontFamily = poppinsFontFamily),
                 onValueChange = {
                     searchQuery = it
                     selectedFilter = "All"
-                }, placeholder = {
+                },
+                placeholder = {
                     Text(
                         text = "Find Your Coffee...", color = Grey, fontFamily = poppinsFontFamily,
                         fontSize = 10.sp, fontWeight = FontWeight.Medium
                     )
-                }, colors = TextFieldDefaults.colors(
+                },
+                colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = VeryDarkGrey, focusedContainerColor = VeryDarkGrey,
                     focusedTextColor = Color.White, focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
-                ), leadingIcon = {
-                    Icon(painterResource(R.drawable.search), contentDescription = "Search",
-                        tint = Grey)
-                }, shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth()
+                ),
+                leadingIcon = {
+                    Icon(
+                        painterResource(R.drawable.search), contentDescription = "Search",
+                        tint = Grey
+                    )
+                },
+                shape = RoundedCornerShape(15.dp),
+                modifier = Modifier.fillMaxWidth()
             )
         }
         Row(Modifier.horizontalScroll(rememberScrollState())) {
@@ -147,7 +156,8 @@ fun HomeScreen(
                 ((selectedFilter == "All" && searchQuery == "") ||
                         it.name.contains(selectedFilter, ignoreCase = true)) ||
                         (searchQuery.isNotBlank() && it.name.contains(
-                            searchQuery, ignoreCase = true))
+                            searchQuery, ignoreCase = true
+                        ))
             }) { coffee ->
                 ListItem(coffee, {
                     viewModel.selectedItem = coffee
@@ -157,14 +167,21 @@ fun HomeScreen(
             }
         }
         Text(
-            text = "Coffee beans", color = Color.White, modifier = Modifier.padding(vertical = 20.dp),
-            style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.W500, fontFamily = poppinsFontFamily)
+            text = "Coffee beans",
+            color = Color.White,
+            modifier = Modifier.padding(vertical = 20.dp),
+            style = TextStyle(
+                fontSize = 16.sp,
+                fontWeight = FontWeight.W500,
+                fontFamily = poppinsFontFamily
+            )
         )
         LazyRow {
             items(beansList.filter {
                 searchQuery.isBlank() ||
-                (searchQuery.isNotBlank() && it.name.contains(
-                    searchQuery, ignoreCase = true))
+                        (searchQuery.isNotBlank() && it.name.contains(
+                            searchQuery, ignoreCase = true
+                        ))
             }) { bean ->
                 ListItem(bean, {
                     viewModel.selectedItem = bean

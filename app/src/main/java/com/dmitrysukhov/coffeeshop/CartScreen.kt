@@ -1,9 +1,11 @@
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
@@ -62,18 +65,21 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                         start = Offset(0f, 0f), end = Offset(1000f, 1000f)
                     )
                 )
-                .padding(17.dp)
+                .padding(12.dp)
         ) {
             Row {
                 Image(
                     painter = painterResource(id = R.drawable.coffee_1),
-                    contentDescription = null,
+                    contentDescription = null, contentScale = ContentScale.Crop,
                     modifier = Modifier
+                        .clip(RoundedCornerShape(23.dp))
                         .width(100.dp)
                         .height(100.dp)
-                        .clip(RoundedCornerShape(16.dp))
+
 
                 )
+                Spacer(modifier = Modifier.width(22.dp))
+
                 Column {
                     Text(
                         text = "Cappuccino", color = Color.White, fontSize = 16.sp,
@@ -81,7 +87,7 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                     )
 
                     Text(
-                        text = "With Steamed Milk", color = Color.LightGray, fontSize = 10.sp,
+                        text = "With Steamed Milk",color = Color.LightGray, fontSize = 10.sp,
                         fontFamily = poppinsFontFamily, lineHeight = 20.sp
                     )
 
@@ -101,36 +107,53 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                     }
                 }
             }
-            Row {
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Row(verticalAlignment = Alignment.CenterVertically)
+            {
                 Box(
                     modifier =
                     Modifier
+                        .clip(RoundedCornerShape(10.dp))
                         .background(color = Color.Black)
                         .width(72.dp)
                         .height(35.dp)
-                        .clip(RoundedCornerShape(10.dp))
-
                 ) {
                     Text(
-                        text = "S", color = Color.White, fontFamily = poppinsFontFamily,
-                        fontWeight = W500, fontSize = 16.sp, lineHeight = 20.sp
+                        text = "S",
+                        modifier = Modifier.align(Alignment.Center),
+                        color = Color.White,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = W500,
+                        fontSize = 16.sp,
+                        lineHeight = 20.sp
                     )
                 }
-
+                Spacer(modifier = Modifier.width(17.dp))
                 Text(
-                    text = "$ ", color = Orange, fontFamily = poppinsFontFamily,
-                    fontWeight = W600, fontSize = 16.sp, lineHeight = 20.sp
+                    text = "$ ",
+                    modifier = Modifier.padding(0.dp),
+                    color = Orange,
+                    fontFamily = poppinsFontFamily,
+                    fontWeight = W600,
+                    fontSize = 16.sp,
+                    lineHeight = 20.sp
                 )
-
                 Text(
-                    text = "4.20", fontFamily = poppinsFontFamily,
-                    fontWeight = W600, fontSize = 16.sp, lineHeight = 20.sp
+                    text = "4.20",
+                    modifier = Modifier
+                        .width(49.dp),
+                    color = Color.White,
+                    fontFamily = poppinsFontFamily,
+                    fontWeight = W600,
+                    fontSize = 16.sp,
+                    lineHeight = 20.sp
                 )
 
                 Box(
                     modifier = Modifier
-                        .size(28.dp)
                         .clip(RoundedCornerShape(7.dp))
+                        .size(28.dp)
                         .background(Orange)
                 ) {
                     Image(
@@ -140,22 +163,213 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                             .align(Alignment.Center)
                     )
                 }
+                Spacer(modifier = Modifier.width(17.dp))
                 Box(
                     modifier =
                     Modifier
+                        .clip(RoundedCornerShape(7.dp))
                         .background(color = Color.Black)
-                        .width(72.dp)
-                        .height(35.dp)
-                        .clip(RoundedCornerShape(17.dp))
-
+                        .border(2.dp, (Orange), RoundedCornerShape(7.dp))
+                        .width(50.dp)
+                        .height(30.dp)
                 )
                 {
                     Text(
-                        text = "1", fontFamily = poppinsFontFamily,
-                        fontWeight = W600, fontSize = 16.sp, lineHeight = 20.sp
+                        text = "1",
+                        modifier = Modifier.align(Alignment.Center),
+                        color = Color.White,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = W600,
+                        fontSize = 16.sp,
+                        lineHeight = 20.sp
                     )
                 }
+                Spacer(modifier = Modifier.width(17.dp))
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(RoundedCornerShape(7.dp))
+                        .background(Orange)
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.plus),
+                        contentDescription = "plus", modifier = Modifier
+                            .size(8.dp)
+                            .align(Alignment.Center)
 
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Row(verticalAlignment = Alignment.CenterVertically)
+            {
+                Box(
+                    modifier =
+                    Modifier
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(color = Color.Black)
+                        .width(72.dp)
+                        .height(35.dp)
+                ) {
+                    Text(
+                        text = "M",
+                        modifier = Modifier.align(Alignment.Center),
+                        color = Color.White,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = W500,
+                        fontSize = 16.sp,
+                        lineHeight = 20.sp
+                    )
+                }
+                Spacer(modifier = Modifier.width(17.dp))
+                Text(
+                    text = "$ ",
+                    modifier = Modifier.padding(0.dp),
+                    color = Orange,
+                    fontFamily = poppinsFontFamily,
+                    fontWeight = W600,
+                    fontSize = 16.sp,
+                    lineHeight = 20.sp
+                )
+                Text(
+                    text = "4.20",
+                    modifier = Modifier
+                        .width(49.dp),
+                    color = Color.White,
+                    fontFamily = poppinsFontFamily,
+                    fontWeight = W600,
+                    fontSize = 16.sp,
+                    lineHeight = 20.sp
+                )
+
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(7.dp))
+                        .size(28.dp)
+                        .background(Orange)
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.minus),
+                        contentDescription = "minus", modifier = Modifier
+                            .size(8.dp)
+                            .align(Alignment.Center)
+                    )
+                }
+                Spacer(modifier = Modifier.width(17.dp))
+                Box(
+                    modifier =
+                    Modifier
+                        .clip(RoundedCornerShape(7.dp))
+                        .background(color = Color.Black)
+                        .border(2.dp, (Orange), RoundedCornerShape(7.dp))
+                        .width(50.dp)
+                        .height(30.dp)
+                )
+                {
+                    Text(
+                        text = "1",
+                        modifier = Modifier.align(Alignment.Center),
+                        color = Color.White,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = W600,
+                        fontSize = 16.sp,
+                        lineHeight = 20.sp
+                    )
+                }
+                Spacer(modifier = Modifier.width(17.dp))
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(RoundedCornerShape(7.dp))
+                        .background(Orange)
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.plus),
+                        contentDescription = "plus", modifier = Modifier
+                            .size(8.dp)
+                            .align(Alignment.Center)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(verticalAlignment = Alignment.CenterVertically)
+            {
+                Box(
+                    modifier =
+                    Modifier
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(color = Color.Black)
+                        .width(72.dp)
+                        .height(35.dp)
+                ) {
+                    Text(
+                        text = "L",
+                        modifier = Modifier.align(Alignment.Center),
+                        color = Color.White,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = W500,
+                        fontSize = 16.sp,
+                        lineHeight = 20.sp
+                    )
+                }
+                Spacer(modifier = Modifier.width(17.dp))
+                Text(
+                    text = "$ ",
+                    modifier = Modifier.padding(0.dp),
+                    color = Orange,
+                    fontFamily = poppinsFontFamily,
+                    fontWeight = W600,
+                    fontSize = 16.sp,
+                    lineHeight = 20.sp
+                )
+                Text(
+                    text = "4.20",
+                    modifier = Modifier
+                        .width(49.dp),
+                    color = Color.White,
+                    fontFamily = poppinsFontFamily,
+                    fontWeight = W600,
+                    fontSize = 16.sp,
+                    lineHeight = 20.sp
+                )
+
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(7.dp))
+                        .size(28.dp)
+                        .background(Orange)
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.minus),
+                        contentDescription = "minus", modifier = Modifier
+                            .size(8.dp)
+                            .align(Alignment.Center)
+                    )
+                }
+                Spacer(modifier = Modifier.width(17.dp))
+                Box(
+                    modifier =
+                    Modifier
+                        .clip(RoundedCornerShape(7.dp))
+                        .background(color = Color.Black)
+                        .border(2.dp, (Orange), RoundedCornerShape(7.dp))
+                        .width(50.dp)
+                        .height(30.dp)
+                )
+                {
+                    Text(
+                        text = "1",
+                        modifier = Modifier.align(Alignment.Center),
+                        color = Color.White,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = W600,
+                        fontSize = 16.sp,
+                        lineHeight = 20.sp
+                    )
+                }
+                Spacer(modifier = Modifier.width(17.dp))
                 Box(
                     modifier = Modifier
                         .size(28.dp)
@@ -173,7 +387,6 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
         }
     }
 }
-
 
 const val CART_SCREEN = "CartScreen"
 
