@@ -90,6 +90,7 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                         text = "With Steamed Milk",color = Color.LightGray, fontSize = 10.sp,
                         fontFamily = poppinsFontFamily, lineHeight = 20.sp
                     )
+                    Spacer(modifier = Modifier.height(10.dp))
 
                     Row(
                         modifier = Modifier
@@ -387,6 +388,7 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
         }
     }
 }
+
 
 const val CART_SCREEN = "CartScreen"
 
