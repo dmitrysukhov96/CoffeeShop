@@ -163,6 +163,7 @@ class MainActivity : ComponentActivity() {
                             DetailsScreen( viewModel, setTopBarState, navController)
                         }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
+                        composable(COFFEE_CART) { CoffeeCart() }
                     }
                 }
             }
