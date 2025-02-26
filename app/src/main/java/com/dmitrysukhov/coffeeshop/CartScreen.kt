@@ -39,6 +39,7 @@ import com.dmitrysukhov.coffeeshop.TopBarState
 import com.dmitrysukhov.coffeeshop.VeryDarkGrey
 import com.dmitrysukhov.coffeeshop.poppinsFontFamily
 
+
 @Composable
 fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
     LaunchedEffect(Unit) {
@@ -48,23 +49,16 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
         })
     }
 
-
-    Spacer(modifier = Modifier.height(11.dp))
-
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Black),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-
-        )
-        {
+            .background(Black)
+            .padding(top = 55.dp),
+                verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    )
+    {
             Column(
                 modifier = Modifier
                     .width(330.dp)
@@ -77,7 +71,6 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                         )
                     )
                     .padding(12.dp),
-
                 ) {
                 Row {
                     Image(
@@ -666,7 +659,7 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                     }
                 }
             }
-        }
+
         Spacer(modifier = Modifier.height(16.dp))
         Box(
             modifier = Modifier
