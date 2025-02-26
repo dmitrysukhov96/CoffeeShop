@@ -55,7 +55,6 @@ fun FavouritesScreen() {
 
 @Composable
 fun CoffeeCart() {
-
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -95,6 +94,4 @@ fun CoffeeCart() {
     }
 }
 
-
-const val COFFEE_CART = "CoffeeCart"
 const val FAVORITES_SCREEN = "FavoritesScreen"
