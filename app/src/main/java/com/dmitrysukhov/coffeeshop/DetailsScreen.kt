@@ -53,7 +53,7 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun DetailsScreen(
-  viewModel: CoffeeViewModel,
+    viewModel: CoffeeViewModel,
     setTopBarState: (TopBarState) -> Unit, navController: NavHostController
 ) {
     LaunchedEffect(Unit) {
@@ -153,8 +153,11 @@ fun DetailsScreen(
         }
         Spacer(modifier = Modifier.height(20.dp))
         Text(
-            text = stringResource(id = R.string.description), modifier = Modifier.padding(horizontal = 19.dp),
-            color = LightGrey, fontWeight = W600, fontFamily = poppinsFontFamily
+            text = stringResource(id = R.string.description),
+            modifier = Modifier.padding(horizontal = 19.dp),
+            color = LightGrey,
+            fontWeight = W600,
+            fontFamily = poppinsFontFamily
         )
         Spacer(modifier = Modifier.height(15.dp))
         Text(
@@ -164,8 +167,11 @@ fun DetailsScreen(
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = stringResource(id = R.string.size), modifier = Modifier.padding(horizontal = 19.dp), color = LightGrey,
-            fontWeight = W600, fontFamily = poppinsFontFamily
+            text = stringResource(id = R.string.size),
+            modifier = Modifier.padding(horizontal = 19.dp),
+            color = LightGrey,
+            fontWeight = W600,
+            fontFamily = poppinsFontFamily
         )
         Spacer(modifier = Modifier.height(12.dp))
         var selectedOption by rememberSaveable { mutableStateOf(1) }
@@ -176,7 +182,7 @@ fun DetailsScreen(
             if (coffee != null) "L" else "1000gm",
             selectedOption,
 
-        ) { selectedOption = it }
+            ) { selectedOption = it }
         Spacer(modifier = Modifier.height(28.dp))
         Row(
             modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
@@ -187,8 +193,11 @@ fun DetailsScreen(
                 horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = stringResource(id = R.string.price), modifier = Modifier.padding(start = 40.dp), color = LightGrey,
-                    fontWeight = W500, fontFamily = poppinsFontFamily,
+                    text = stringResource(id = R.string.price),
+                    modifier = Modifier.padding(start = 40.dp),
+                    color = LightGrey,
+                    fontWeight = W500,
+                    fontFamily = poppinsFontFamily,
                 )
                 Spacer(modifier = Modifier.height(3.dp))
                 Text(
@@ -208,7 +217,19 @@ fun DetailsScreen(
                 )
             }
             Button(
-                onClick = {Toast.makeText(context, context.getString(R.string.added_to_cart), Toast.LENGTH_LONG).show() }, modifier = Modifier
+                onClick = {
+                    val itemToAdd = coffee ?: bean
+                    if (itemToAdd != null) {
+                        viewModel.addToCart(itemToAdd)
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.added_to_cart),
+                            Toast.LENGTH_LONG
+                        ).show()
+                        navController.navigateUp()
+                    }
+                },
+                modifier = Modifier
                     .width(240.dp)
                     .height(60.dp)
                     .padding(end = 20.5.dp), colors = ButtonDefaults.buttonColors(
@@ -217,9 +238,12 @@ fun DetailsScreen(
             ) {
                 Text(
 
-                    text = stringResource(id = R.string.add_to_cart), fontSize = 16.sp, fontWeight = FontWeight.Bold,
+                    text = stringResource(id = R.string.add_to_cart),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
 
-                    textAlign = TextAlign.Center, style = TextStyle(
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
                         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold
 
                     )
