@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,14 +27,20 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.dmitrysukhov.coffeeshop.Black
 import com.dmitrysukhov.coffeeshop.DarkGrey2
 import com.dmitrysukhov.coffeeshop.LightGrey
 import com.dmitrysukhov.coffeeshop.Orange
+import com.dmitrysukhov.coffeeshop.PAYMENT_SCREEN
 import com.dmitrysukhov.coffeeshop.R
 import com.dmitrysukhov.coffeeshop.TopBarIcon
 import com.dmitrysukhov.coffeeshop.TopBarState
@@ -41,7 +49,7 @@ import com.dmitrysukhov.coffeeshop.poppinsFontFamily
 
 
 @Composable
-fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
+fun CartScreen(setTopBarState: (TopBarState) -> Unit, navController: NavHostController) {
     LaunchedEffect(Unit) {
         setTopBarState(TopBarState(title = "Cart") {
             TopBarIcon(iconRes = R.drawable.kartochka) {}
@@ -994,6 +1002,27 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit) {
                 }
             }
         }
+        Button(
+            onClick = { navController.navigate(PAYMENT_SCREEN) }, modifier = Modifier
+                .width(240.dp)
+                .height(60.dp)
+                .padding(end = 20.5.dp), colors = ButtonDefaults.buttonColors(
+                containerColor = Orange, contentColor = Color.White
+            ), shape = RoundedCornerShape(16.dp)
+        ) {
+            Text(
+
+                text = stringResource(id = R.string.add_to_cart), fontSize = 16.sp, fontWeight = FontWeight.Bold,
+
+                textAlign = TextAlign.Center, style = TextStyle(
+                    fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold
+
+                )
+            )
+        }
+   Spacer(Modifier.height(100.dp))
+
+
     }
 }
 

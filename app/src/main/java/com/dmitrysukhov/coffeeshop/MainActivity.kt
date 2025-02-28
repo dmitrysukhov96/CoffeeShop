@@ -157,13 +157,13 @@ class MainActivity : ComponentActivity() {
                         composable(HOME_SCREEN) {
                             HomeScreen(navController, viewModel, setTopBarState)
                         }
-                        composable(CART_SCREEN) { CartScreen(setTopBarState) }
+                        composable(CART_SCREEN) { CartScreen(setTopBarState,navController) }
                         composable(FAVORITES_SCREEN) { FavouritesScreen() }
                         composable(DETAILS_SCREEN) {
                             DetailsScreen( viewModel, setTopBarState, navController)
                         }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
-                        composable(COFFEE_CART) { CoffeeCart() }
+                        composable(PAYMENT_SCREEN) { PaymentScreen(setTopBarState,navController) }
                     }
                 }
             }
