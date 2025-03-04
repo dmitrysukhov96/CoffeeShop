@@ -140,7 +140,7 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     NavHost(
                         navController = navController,
-                        startDestination = "1",
+                        startDestination = SPLASH_SCREEN,
                         modifier = Modifier
                             .background(Black)
                             .hazeSource(hazeState)
@@ -164,7 +164,6 @@ class MainActivity : ComponentActivity() {
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
                         composable(PAYMENT_SCREEN) { PaymentScreen(setTopBarState, navController) }
                         composable("1") { DimaTestScreen() }
-//                        composable(KostiaTestScreen()) { KostiaTestScreen() }
                     }
                 }
             }
@@ -173,53 +172,6 @@ class MainActivity : ComponentActivity() {
 
 
 }
-
-@Composable
-fun KostiaTestScreen() {
-    var schot by remember { mutableStateOf(0) }
-    Column(Modifier.fillMaxSize(),
-        Arrangement.Center) {
-        if (schot < 3) Button(onClick = { schot++ }) {
-            Text(text = "Я поел")
-        }
-    }
-    //надо сделать экран в котором тебе можно покушать 3 раза за день.
-    //время можно хранить в миллисекундах. то есть например https://currentmillis.com/
-    //1740000000000 = Wed Feb 19 2025 21:20:00.000
-    //должна быть кнопка "Я поел".
-    //и 3 текста. они отображаются когда есть прием пищи.
-    //1: 12:30
-    //2: 15:00
-    //3: 18:30
-    //если есть все 3 приема пищи то кнопка я поел не отображается
-}
-
-@Composable
-fun SavaTestScreen() {
-    //надо сделать экран в котором тебе можно покушать 3 раза за день.
-    //время можно хранить в миллисекундах. то есть например https://currentmillis.com/
-    //1740000000000 = Wed Feb 19 2025 21:20:00.000
-    //должна быть кнопка "Я поел".
-    //и 3 текста. они отображаются когда есть прием пищи.
-    //1: 12:30
-    //2: 15:00
-    //3: 18:30
-    //если есть все 3 приема пищи то кнопка я поел не отображается
-}
-
-@Composable
-fun TimaTestScreen() {
-    //надо сделать экран в котором тебе можно покушать 3 раза за день.
-    //время можно хранить в миллисекундах. то есть например https://currentmillis.com/
-    //1740000000000 = Wed Feb 19 2025 21:20:00.000
-    //должна быть кнопка "Я поел".
-    //и 3 текста. они отображаются когда есть прием пищи.
-    //1: 12:30
-    //2: 15:00
-    //3: 18:30
-    //если есть все 3 приема пищи то кнопка я поел не отображается
-}
-
 
 @Composable
 fun DimaTestScreen() {
