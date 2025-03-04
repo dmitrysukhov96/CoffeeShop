@@ -1,12 +1,15 @@
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Arrangement.Absolute.Center
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -19,6 +22,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.dmitrysukhov.coffeeshop.Black
+import com.dmitrysukhov.coffeeshop.CoffeeViewModel
 import com.dmitrysukhov.coffeeshop.DarkGrey2
 import com.dmitrysukhov.coffeeshop.LightGrey
 import com.dmitrysukhov.coffeeshop.Orange
@@ -47,8 +55,11 @@ import com.dmitrysukhov.coffeeshop.VeryDarkGrey
 import com.dmitrysukhov.coffeeshop.poppinsFontFamily
 
 @Composable
-fun CartScreen(setTopBarState: (TopBarState) -> Unit, navController: NavHostController) {
+fun CartScreen(setTopBarState: (TopBarState) -> Unit,viewModel: CoffeeViewModel) {
+
+
     LaunchedEffect(Unit) {
+        viewModel.getCartItems()
         setTopBarState(TopBarState(title = "Cart") {
             TopBarIcon(iconRes = R.drawable.kartochka) {}
             TopBarIcon(imgRes = R.drawable.man) {}
@@ -70,8 +81,6 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit, navController: NavHostCont
 
         {
             CartBigItem()
-            CartBigItem()
-
             Spacer(modifier = Modifier.height(16.dp))
 
             Column(
@@ -373,7 +382,7 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit, navController: NavHostCont
         Box(
             modifier = Modifier
                 .fillMaxSize(),
-            contentAlignment = Alignment.BottomCenter // Размещаем Column внизу
+            contentAlignment = Alignment.BottomCenter
         ) {
             Column(
                 modifier = Modifier
@@ -715,6 +724,10 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit, navController: NavHostCont
 
 @Composable
 fun CartBigItem() {
+    var selectedSize by remember { mutableStateOf("S") }
+    var quantity by remember { mutableStateOf(1) }
+    val price = 4.20 * quantity // обновляем цену на основе количества
+
     Column(
         modifier = Modifier
             .width(330.dp)
@@ -727,8 +740,7 @@ fun CartBigItem() {
                 )
             )
             .padding(12.dp),
-
-        ) {
+    ) {
         Row {
             Image(
                 painter = painterResource(id = R.drawable.coffee_1),
@@ -737,8 +749,6 @@ fun CartBigItem() {
                     .clip(RoundedCornerShape(23.dp))
                     .width(100.dp)
                     .height(100.dp)
-
-
             )
             Spacer(modifier = Modifier.width(22.dp))
 
@@ -770,122 +780,19 @@ fun CartBigItem() {
                 }
             }
         }
+
+
         Spacer(modifier = Modifier.height(10.dp))
-
-        Row(verticalAlignment = Alignment.CenterVertically)
-        {
-            Box(
-                modifier =
-                Modifier
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(color = Color.Black)
-                    .width(72.dp)
-                    .height(35.dp)
-            ) {
-                Text(
-                    text = "S",
-                    modifier = Modifier.align(Alignment.Center),
-                    color = Color.White,
-                    fontFamily = poppinsFontFamily,
-                    fontWeight = W500,
-                    fontSize = 16.sp,
-                    lineHeight = 20.sp
-                )
-            }
-            Spacer(modifier = Modifier.width(17.dp))
-            Text(
-                text = "$ ",
-                modifier = Modifier.padding(0.dp),
-                color = Orange,
-                fontFamily = poppinsFontFamily,
-                fontWeight = W600,
-                fontSize = 16.sp,
-                lineHeight = 20.sp
-            )
-            Text(
-                text = "4.20",
-                modifier = Modifier
-                    .width(49.dp),
-                color = Color.White,
-                fontFamily = poppinsFontFamily,
-                fontWeight = W600,
-                fontSize = 16.sp,
-                lineHeight = 20.sp
-            )
-
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(7.dp))
-                    .size(28.dp)
-                    .background(Orange)
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.minus),
-                    contentDescription = "minus", modifier = Modifier
-                        .size(8.dp)
-                        .align(Alignment.Center)
-                )
-            }
-            Spacer(modifier = Modifier.width(17.dp))
-            Box(
-                modifier =
-                Modifier
-                    .clip(RoundedCornerShape(7.dp))
-                    .background(color = Color.Black)
-                    .border(2.dp, (Orange), RoundedCornerShape(7.dp))
-                    .width(50.dp)
-                    .height(30.dp)
-            )
-            {
-                Text(
-                    text = "1",
-                    modifier = Modifier.align(Alignment.Center),
-                    color = Color.White,
-                    fontFamily = poppinsFontFamily,
-                    fontWeight = W600,
-                    fontSize = 16.sp,
-                    lineHeight = 20.sp
-                )
-            }
-            Spacer(modifier = Modifier.width(17.dp))
-            Box(
-                modifier = Modifier
-                    .size(28.dp)
-                    .clip(RoundedCornerShape(7.dp))
-                    .background(Orange)
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.plus),
-                    contentDescription = "plus", modifier = Modifier
-                        .size(8.dp)
-                        .align(Alignment.Center)
-
-                )
-            }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            SizeOption("S", selectedSize) { selectedSize = it }
+            SizeOption("M", selectedSize) { selectedSize = it }
+            SizeOption("L", selectedSize) { selectedSize = it }
         }
+
         Spacer(modifier = Modifier.height(8.dp))
 
-        Row(verticalAlignment = Alignment.CenterVertically)
-        {
-            Box(
-                modifier =
-                Modifier
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(color = Color.Black)
-                    .width(72.dp)
-                    .height(35.dp)
-            ) {
-                Text(
-                    text = "M",
-                    modifier = Modifier.align(Alignment.Center),
-                    color = Color.White,
-                    fontFamily = poppinsFontFamily,
-                    fontWeight = W500,
-                    fontSize = 16.sp,
-                    lineHeight = 20.sp
-                )
-            }
-            Spacer(modifier = Modifier.width(17.dp))
+
+        Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = "$ ",
                 modifier = Modifier.padding(0.dp),
@@ -896,7 +803,7 @@ fun CartBigItem() {
                 lineHeight = 20.sp
             )
             Text(
-                text = "4.20",
+                text = "%.2f".format(price),
                 modifier = Modifier
                     .width(49.dp),
                 color = Color.White,
@@ -905,18 +812,22 @@ fun CartBigItem() {
                 fontSize = 16.sp,
                 lineHeight = 20.sp
             )
+        }
 
-            Box(
+
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Button(
+                onClick = { if (quantity > 1) quantity -= 1 },
                 modifier = Modifier
-                    .clip(RoundedCornerShape(7.dp))
                     .size(28.dp)
+                    .clip(RoundedCornerShape(7.dp))
                     .background(Orange)
             ) {
                 Image(
                     painter = painterResource(R.drawable.minus),
                     contentDescription = "minus", modifier = Modifier
                         .size(8.dp)
-                        .align(Alignment.Center)
+                        .align(Alignment.CenterVertically)
                 )
             }
             Spacer(modifier = Modifier.width(17.dp))
@@ -928,10 +839,9 @@ fun CartBigItem() {
                     .border(2.dp, (Orange), RoundedCornerShape(7.dp))
                     .width(50.dp)
                     .height(30.dp)
-            )
-            {
+            ) {
                 Text(
-                    text = "1",
+                    text = "$quantity",
                     modifier = Modifier.align(Alignment.Center),
                     color = Color.White,
                     fontFamily = poppinsFontFamily,
@@ -941,7 +851,8 @@ fun CartBigItem() {
                 )
             }
             Spacer(modifier = Modifier.width(17.dp))
-            Box(
+            Button(
+                onClick = { quantity += 1 },
                 modifier = Modifier
                     .size(28.dp)
                     .clip(RoundedCornerShape(7.dp))
@@ -951,104 +862,45 @@ fun CartBigItem() {
                     painter = painterResource(R.drawable.plus),
                     contentDescription = "plus", modifier = Modifier
                         .size(8.dp)
-                        .align(Alignment.Center)
+                        .align(Alignment.CenterVertically)
                 )
             }
         }
 
         Spacer(modifier = Modifier.height(8.dp))
-        Row(verticalAlignment = Alignment.CenterVertically)
-        {
-            Box(
-                modifier =
-                Modifier
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(color = Color.Black)
-                    .width(72.dp)
-                    .height(35.dp)
-            ) {
-                Text(
-                    text = "L",
-                    modifier = Modifier.align(Alignment.Center),
-                    color = Color.White,
-                    fontFamily = poppinsFontFamily,
-                    fontWeight = W500,
-                    fontSize = 16.sp,
-                    lineHeight = 20.sp
-                )
-            }
-            Spacer(modifier = Modifier.width(17.dp))
-            Text(
-                text = "$ ",
-                modifier = Modifier.padding(0.dp),
-                color = Orange,
-                fontFamily = poppinsFontFamily,
-                fontWeight = W600,
-                fontSize = 16.sp,
-                lineHeight = 20.sp
-            )
-            Text(
-                text = "4.20",
-                modifier = Modifier
-                    .width(49.dp),
-                color = Color.White,
-                fontFamily = poppinsFontFamily,
-                fontWeight = W600,
-                fontSize = 16.sp,
-                lineHeight = 20.sp
-            )
 
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(7.dp))
-                    .size(28.dp)
-                    .background(Orange)
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.minus),
-                    contentDescription = "minus", modifier = Modifier
-                        .size(8.dp)
-                        .align(Alignment.Center)
-                )
-            }
-            Spacer(modifier = Modifier.width(17.dp))
-            Box(
-                modifier =
-                Modifier
-                    .clip(RoundedCornerShape(7.dp))
-                    .background(color = Color.Black)
-                    .border(2.dp, (Orange), RoundedCornerShape(7.dp))
-                    .width(50.dp)
-                    .height(30.dp)
-            )
-            {
-                Text(
-                    text = "1",
-                    modifier = Modifier.align(Alignment.Center),
-                    color = Color.White,
-                    fontFamily = poppinsFontFamily,
-                    fontWeight = W600,
-                    fontSize = 16.sp,
-                    lineHeight = 20.sp
-                )
-            }
-            Spacer(modifier = Modifier.width(17.dp))
-            Box(
-                modifier = Modifier
-                    .size(28.dp)
-                    .clip(RoundedCornerShape(7.dp))
-                    .background(Orange)
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.plus),
-                    contentDescription = "plus", modifier = Modifier
-                        .size(8.dp)
-                        .align(Alignment.Center)
-                )
-            }
+
+        Button(
+            onClick = { },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "Добавить в корзину", color = Color.White)
         }
     }
 }
+
+@Composable
+fun SizeOption(size: String, selectedSize: String, onClick: (String) -> Unit) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(10.dp))
+            .background(if (selectedSize == size) Orange else Color.Black)
+            .width(72.dp)
+            .height(35.dp)
+            .clickable { onClick(size) },
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = size,
+            color = Color.White,
+            fontFamily = poppinsFontFamily,
+            fontWeight = W500,
+            fontSize = 16.sp,
+            lineHeight = 20.sp
+        )
+    }
+}
+
 
 
 const val CART_SCREEN = "CartScreen"

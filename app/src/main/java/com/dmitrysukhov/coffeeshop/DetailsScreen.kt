@@ -61,9 +61,9 @@ fun DetailsScreen(
             TopBarIcon(iconRes = R.drawable.arrow) { navController.navigateUp() }
             TopBarIcon(iconRes = R.drawable.fav) {}
         })
+
     }
-    val coffee = viewModel.selectedItem as? Coffee
-    val bean = viewModel.selectedItem as? Beans
+
     Column(
         Modifier
             .fillMaxSize()
