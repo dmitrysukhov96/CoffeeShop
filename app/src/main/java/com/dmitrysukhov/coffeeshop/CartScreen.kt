@@ -56,7 +56,6 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit, navController: NavHostCont
             TopBarIcon(imgRes = R.drawable.man) {}
         })
     }
-
     Column(
         modifier = Modifier
             .fillMaxSize()

@@ -8,9 +8,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,21 +47,28 @@ class MainActivity : ComponentActivity() {
             val systemUiController = rememberSystemUiController()
             SideEffect { systemUiController.setStatusBarColor(color = Black, darkIcons = false) }
             CoffeeShopTheme {
-                val viewModel:CoffeeViewModel = viewModel()
+                val viewModel: CoffeeViewModel = viewModel()
                 val navController = rememberNavController()
                 val hazeState = remember { HazeState() }
                 var showBottomBar by rememberSaveable { mutableStateOf(false) }
                 showBottomBar = navController.currentDestination?.route != DETAILS_SCREEN
                 Scaffold(
                     topBar = {
-                        Box(modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 16.dp)
-                            .padding(horizontal = 22.dp)) {
-                            Row(modifier = Modifier.fillMaxWidth(),
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 16.dp)
+                                .padding(horizontal = 22.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                             ) { topBarState.topBarActions.invoke(this) }
-                            Text(topBarState.title, color = Color.White, modifier =  Modifier.align(Alignment.Center))
+                            Text(
+                                topBarState.title,
+                                color = Color.White,
+                                modifier = Modifier.align(Alignment.Center)
+                            )
                         }
                     },
 //                    bottomBar = {
@@ -128,7 +138,8 @@ class MainActivity : ComponentActivity() {
 //                    }
                 ) { innerPadding ->
                     NavHost(
-                        navController = navController, startDestination = "1",
+                        navController = navController,
+                        startDestination = "1",
                         modifier = Modifier
                             .background(Black)
                             .hazeSource(hazeState)
@@ -144,14 +155,15 @@ class MainActivity : ComponentActivity() {
                         composable(HOME_SCREEN) {
                             HomeScreen(navController, viewModel, setTopBarState)
                         }
-                        composable(CART_SCREEN) { CartScreen(setTopBarState,navController) }
+                        composable(CART_SCREEN) { CartScreen(setTopBarState, navController) }
                         composable(FAVORITES_SCREEN) { FavouritesScreen() }
                         composable(DETAILS_SCREEN) {
-                            DetailsScreen( viewModel, setTopBarState, navController)
+                            DetailsScreen(viewModel, setTopBarState, navController)
                         }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
-                        composable(PAYMENT_SCREEN) { PaymentScreen(setTopBarState,navController) }
+                        composable(PAYMENT_SCREEN) { PaymentScreen(setTopBarState, navController) }
                         composable("1") { TestScreen() }
+                        composable(KostiaTestScreen()) { KostiaTestScreen() }
                     }
                 }
             }
@@ -163,6 +175,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun KostiaTestScreen() {
+    var count by remember { mutableStateOf(0) }
+    Column(Modifier.fillMaxSize(),
+        Arrangement.Center) {
+       if (count < 3) Button(onClick = { count++ }) { Text(text = "Я поел")
+        }
+    }
+
+
     //надо сделать экран в котором тебе можно покушать 3 раза за день.
     //время можно хранить в миллисекундах. то есть например https://currentmillis.com/
     //1740000000000 = Wed Feb 19 2025 21:20:00.000
