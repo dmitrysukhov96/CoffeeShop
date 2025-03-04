@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.joda.time)
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)

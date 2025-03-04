@@ -37,6 +37,7 @@ import com.dmitrysukhov.coffeeshop.ui.theme.SplashScreen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeSource
+import org.joda.time.DateTime
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -162,8 +163,8 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
                         composable(PAYMENT_SCREEN) { PaymentScreen(setTopBarState, navController) }
-                        composable("1") { TestScreen() }
-                        composable(KostiaTestScreen()) { KostiaTestScreen() }
+                        composable("1") { DimaTestScreen() }
+//                        composable(KostiaTestScreen()) { KostiaTestScreen() }
                     }
                 }
             }
@@ -175,14 +176,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun KostiaTestScreen() {
-    var count by remember { mutableStateOf(0) }
+    var schot by remember { mutableStateOf(0) }
     Column(Modifier.fillMaxSize(),
         Arrangement.Center) {
-       if (count < 3) Button(onClick = { count++ }) { Text(text = "Я поел")
+        if (schot < 3) Button(onClick = { schot++ }) {
+            Text(text = "Я поел")
         }
     }
-
-
     //надо сделать экран в котором тебе можно покушать 3 раза за день.
     //время можно хранить в миллисекундах. то есть например https://currentmillis.com/
     //1740000000000 = Wed Feb 19 2025 21:20:00.000
@@ -218,4 +218,27 @@ fun TimaTestScreen() {
     //2: 15:00
     //3: 18:30
     //если есть все 3 приема пищи то кнопка я поел не отображается
+}
+
+
+@Composable
+fun DimaTestScreen() {
+    var first: Long? by rememberSaveable { mutableStateOf(null) }
+    var second: Long? by rememberSaveable { mutableStateOf(null) }
+    var third: Long? by rememberSaveable { mutableStateOf(null) }
+    Column(
+        Modifier
+            .background(Color.White)
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Text(if (first != null) DateTime(first).toString("HH:mm") else "")
+        Text(if (second != null) DateTime(second).toString("HH:mm") else "")
+        Text(if (third != null) DateTime(third).toString("HH:mm") else "")
+        if (third == null) Button(onClick = {
+            if (first == null) first = System.currentTimeMillis()
+            else if (second == null) second = System.currentTimeMillis()
+            else if (third == null) third = System.currentTimeMillis()
+        }) { Text(text = "Я поел") }
+    }
 }
