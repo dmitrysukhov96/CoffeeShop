@@ -1010,18 +1010,13 @@ fun CartScreen(setTopBarState: (TopBarState) -> Unit, navController: NavHostCont
             ), shape = RoundedCornerShape(16.dp)
         ) {
             Text(
-
                 text = stringResource(id = R.string.add_to_cart), fontSize = 16.sp, fontWeight = FontWeight.Bold,
-
                 textAlign = TextAlign.Center, style = TextStyle(
                     fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold
-
                 )
             )
         }
    Spacer(Modifier.height(100.dp))
-
-
     }
 }
 

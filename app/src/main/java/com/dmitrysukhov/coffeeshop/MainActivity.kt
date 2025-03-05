@@ -2,21 +2,27 @@ package com.dmitrysukhov.coffeeshop
 
 import CART_SCREEN
 import CartScreen
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,7 +31,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
@@ -36,8 +44,9 @@ import com.dmitrysukhov.coffeeshop.ui.theme.SPLASH_SCREEN
 import com.dmitrysukhov.coffeeshop.ui.theme.SplashScreen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.HazeStyle
+import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
-import org.joda.time.DateTime
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,71 +81,71 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     },
-//                    bottomBar = {
-//                        var selectedItem by rememberSaveable { mutableStateOf(HOME_SCREEN) }
-//                        AnimatedVisibility(showBottomBar, enter = EnterTransition.None) {
-//                            Row(
-//                                modifier = Modifier
-//                                    .fillMaxWidth()
-//                                    .clip(RoundedCornerShape(topStart = 23.dp, topEnd = 23.dp))
-//                                    .height(89.dp)
-//                                    .then(
-//                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-//                                            Modifier.hazeEffect(
-//                                                hazeState,
-//                                                style = HazeStyle(
-//                                                    backgroundColor = Color.Transparent,
-//                                                    tint = null, 30.dp
-//                                                )
-//                                            )
-//                                        } else Modifier.background(Black.copy(0.7f))
-//                                    )
-//                                    .padding(horizontal = 41.dp)
-//                                    .padding(
-//                                        bottom = WindowInsets.navigationBars.asPaddingValues()
-//                                            .calculateBottomPadding()
-//                                    ), verticalAlignment = Alignment.CenterVertically,
-//                                horizontalArrangement = Arrangement.SpaceBetween
-//                            ) {
-//                                Icon(
-//                                    painter = painterResource(R.drawable.home),
-//                                    contentDescription = null,
-//                                    tint = if (selectedItem == HOME_SCREEN) Orange else Grey2,
-//                                    modifier = Modifier.clickable {
-//                                        selectedItem = HOME_SCREEN
-//                                        navController.navigate(HOME_SCREEN)
-//                                    }
-//                                )
-//                                Icon(
-//                                    painter = painterResource(R.drawable.shop),
-//                                    contentDescription = null,
-//                                    tint = if (selectedItem == CART_SCREEN) Orange else Grey2,
-//                                    modifier = Modifier.clickable {
-//                                        selectedItem = CART_SCREEN
-//                                        navController.navigate(CART_SCREEN)
-//                                    }
-//                                )
-//                                Icon(
-//                                    painter = painterResource(R.drawable.fav),
-//                                    contentDescription = null,
-//                                    tint = if (selectedItem == FAVORITES_SCREEN) Orange else Grey2,
-//                                    modifier = Modifier.clickable {
-//                                        selectedItem = FAVORITES_SCREEN
-//                                        navController.navigate(FAVORITES_SCREEN)
-//                                    }
-//                                )
-//                                Icon(
-//                                    painter = painterResource(R.drawable.col),
-//                                    contentDescription = null,
-//                                    tint = if (selectedItem == ORDER_HISTORY_SCREEN) Orange else Grey2,
-//                                    modifier = Modifier.clickable {
-//                                        selectedItem = ORDER_HISTORY_SCREEN
-//                                        navController.navigate(ORDER_HISTORY_SCREEN)
-//                                    }
-//                                )
-//                            }
-//                        }
-//                    }
+                    bottomBar = {
+                        var selectedItem by rememberSaveable { mutableStateOf(HOME_SCREEN) }
+                        AnimatedVisibility(showBottomBar, enter = EnterTransition.None) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(topStart = 23.dp, topEnd = 23.dp))
+                                    .height(89.dp)
+                                    .then(
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                                            Modifier.hazeEffect(
+                                                hazeState,
+                                                style = HazeStyle(
+                                                    backgroundColor = Color.Transparent,
+                                                    tint = null, 30.dp
+                                                )
+                                            )
+                                        } else Modifier.background(Black.copy(0.7f))
+                                    )
+                                    .padding(horizontal = 41.dp)
+                                    .padding(
+                                        bottom = WindowInsets.navigationBars.asPaddingValues()
+                                            .calculateBottomPadding()
+                                    ), verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.home),
+                                    contentDescription = null,
+                                    tint = if (selectedItem == HOME_SCREEN) Orange else Grey2,
+                                    modifier = Modifier.clickable {
+                                        selectedItem = HOME_SCREEN
+                                        navController.navigate(HOME_SCREEN)
+                                    }
+                                )
+                                Icon(
+                                    painter = painterResource(R.drawable.shop),
+                                    contentDescription = null,
+                                    tint = if (selectedItem == CART_SCREEN) Orange else Grey2,
+                                    modifier = Modifier.clickable {
+                                        selectedItem = CART_SCREEN
+                                        navController.navigate(CART_SCREEN)
+                                    }
+                                )
+                                Icon(
+                                    painter = painterResource(R.drawable.fav),
+                                    contentDescription = null,
+                                    tint = if (selectedItem == FAVORITES_SCREEN) Orange else Grey2,
+                                    modifier = Modifier.clickable {
+                                        selectedItem = FAVORITES_SCREEN
+                                        navController.navigate(FAVORITES_SCREEN)
+                                    }
+                                )
+                                Icon(
+                                    painter = painterResource(R.drawable.col),
+                                    contentDescription = null,
+                                    tint = if (selectedItem == ORDER_HISTORY_SCREEN) Orange else Grey2,
+                                    modifier = Modifier.clickable {
+                                        selectedItem = ORDER_HISTORY_SCREEN
+                                        navController.navigate(ORDER_HISTORY_SCREEN)
+                                    }
+                                )
+                            }
+                        }
+                    }
                 ) { innerPadding ->
                     NavHost(
                         navController = navController,
@@ -163,7 +172,6 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(ORDER_HISTORY_SCREEN) { OrderHistoryScreen() }
                         composable(PAYMENT_SCREEN) { PaymentScreen(setTopBarState, navController) }
-                        composable("1") { DimaTestScreen() }
                     }
                 }
             }
@@ -171,26 +179,4 @@ class MainActivity : ComponentActivity() {
     }
 
 
-}
-
-@Composable
-fun DimaTestScreen() {
-    var first: Long? by rememberSaveable { mutableStateOf(null) }
-    var second: Long? by rememberSaveable { mutableStateOf(null) }
-    var third: Long? by rememberSaveable { mutableStateOf(null) }
-    Column(
-        Modifier
-            .background(Color.White)
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Text(if (first != null) DateTime(first).toString("HH:mm") else "")
-        Text(if (second != null) DateTime(second).toString("HH:mm") else "")
-        Text(if (third != null) DateTime(third).toString("HH:mm") else "")
-        if (third == null) Button(onClick = {
-            if (first == null) first = System.currentTimeMillis()
-            else if (second == null) second = System.currentTimeMillis()
-            else if (third == null) third = System.currentTimeMillis()
-        }) { Text(text = "Я поел") }
-    }
 }
